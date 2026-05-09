@@ -10,7 +10,7 @@ LOG_FILE="$REPO_ROOT/.claude/commit-log.md"
 mkdir -p "$(dirname "$LOG_FILE")"
 
 HASH=$(git log -1 --format='%h')
-DATE=$(git log -1 --format='%Y-%m-%d')
+DATE=$(git log -1 --format='%cd' --date=short)
 SUBJECT=$(git log -1 --format='%s')
 BODY=$(git log -1 --format='%b' | head -5)
 FILES=$(git diff-tree --no-commit-id --name-only -r HEAD | tr '\n' ', ' | sed 's/, $//')
