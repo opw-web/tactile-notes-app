@@ -1,0 +1,1370 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "label": "vite.config.js",
+      "file_type": "code",
+      "source_file": "vite.config.js",
+      "source_location": "L1",
+      "id": "vite_config_js",
+      "community": 23
+    },
+    {
+      "label": "eslint.config.js",
+      "file_type": "code",
+      "source_file": "eslint.config.js",
+      "source_location": "L1",
+      "id": "eslint_config_js",
+      "community": 24
+    },
+    {
+      "label": "main.jsx",
+      "file_type": "code",
+      "source_file": "src/main.jsx",
+      "source_location": "L1",
+      "id": "src_main_jsx",
+      "community": 25
+    },
+    {
+      "label": "App.jsx",
+      "file_type": "code",
+      "source_file": "src/App.jsx",
+      "source_location": "L1",
+      "id": "src_app_jsx",
+      "community": 3
+    },
+    {
+      "label": "AuthGate()",
+      "file_type": "code",
+      "source_file": "src/App.jsx",
+      "source_location": "L9",
+      "id": "app_authgate",
+      "community": 3
+    },
+    {
+      "label": "LoginGate()",
+      "file_type": "code",
+      "source_file": "src/App.jsx",
+      "source_location": "L17",
+      "id": "app_logingate",
+      "community": 3
+    },
+    {
+      "label": "OnboardingGate()",
+      "file_type": "code",
+      "source_file": "src/App.jsx",
+      "source_location": "L25",
+      "id": "app_onboardinggate",
+      "community": 3
+    },
+    {
+      "label": "LoadingScreen()",
+      "file_type": "code",
+      "source_file": "src/App.jsx",
+      "source_location": "L33",
+      "id": "app_loadingscreen",
+      "community": 3
+    },
+    {
+      "label": "App()",
+      "file_type": "code",
+      "source_file": "src/App.jsx",
+      "source_location": "L61",
+      "id": "app_app",
+      "community": 3
+    },
+    {
+      "label": "TaskContext.jsx",
+      "file_type": "code",
+      "source_file": "src/context/TaskContext.jsx",
+      "source_location": "L1",
+      "id": "src_context_taskcontext_jsx",
+      "community": 4
+    },
+    {
+      "label": "rowToTask()",
+      "file_type": "code",
+      "source_file": "src/context/TaskContext.jsx",
+      "source_location": "L17",
+      "id": "taskcontext_rowtotask",
+      "community": 4
+    },
+    {
+      "label": "TaskProvider()",
+      "file_type": "code",
+      "source_file": "src/context/TaskContext.jsx",
+      "source_location": "L32",
+      "id": "taskcontext_taskprovider",
+      "community": 4
+    },
+    {
+      "label": "useTasks()",
+      "file_type": "code",
+      "source_file": "src/context/TaskContext.jsx",
+      "source_location": "L168",
+      "id": "taskcontext_usetasks",
+      "community": 4
+    },
+    {
+      "label": "Onboarding.jsx",
+      "file_type": "code",
+      "source_file": "src/screens/Onboarding.jsx",
+      "source_location": "L1",
+      "id": "src_screens_onboarding_jsx",
+      "community": 5
+    },
+    {
+      "label": "MatrixThumb()",
+      "file_type": "code",
+      "source_file": "src/screens/Onboarding.jsx",
+      "source_location": "L6",
+      "id": "onboarding_matrixthumb",
+      "community": 5
+    },
+    {
+      "label": "Onboarding()",
+      "file_type": "code",
+      "source_file": "src/screens/Onboarding.jsx",
+      "source_location": "L74",
+      "id": "onboarding_onboarding",
+      "community": 5
+    },
+    {
+      "label": "Timeline.jsx",
+      "file_type": "code",
+      "source_file": "src/screens/Timeline.jsx",
+      "source_location": "L1",
+      "id": "src_screens_timeline_jsx",
+      "community": 6
+    },
+    {
+      "label": "TimeCard()",
+      "file_type": "code",
+      "source_file": "src/screens/Timeline.jsx",
+      "source_location": "L12",
+      "id": "timeline_timecard",
+      "community": 6
+    },
+    {
+      "label": "Timeline()",
+      "file_type": "code",
+      "source_file": "src/screens/Timeline.jsx",
+      "source_location": "L60",
+      "id": "timeline_timeline",
+      "community": 6
+    },
+    {
+      "label": "NewTask.jsx",
+      "file_type": "code",
+      "source_file": "src/screens/NewTask.jsx",
+      "source_location": "L1",
+      "id": "src_screens_newtask_jsx",
+      "community": 8
+    },
+    {
+      "label": "NewTask()",
+      "file_type": "code",
+      "source_file": "src/screens/NewTask.jsx",
+      "source_location": "L10",
+      "id": "newtask_newtask",
+      "community": 8
+    },
+    {
+      "label": "Login.jsx",
+      "file_type": "code",
+      "source_file": "src/screens/Login.jsx",
+      "source_location": "L1",
+      "id": "src_screens_login_jsx",
+      "community": 9
+    },
+    {
+      "label": "Login()",
+      "file_type": "code",
+      "source_file": "src/screens/Login.jsx",
+      "source_location": "L5",
+      "id": "login_login",
+      "community": 9
+    },
+    {
+      "label": "Settings.jsx",
+      "file_type": "code",
+      "source_file": "src/screens/Settings.jsx",
+      "source_location": "L1",
+      "id": "src_screens_settings_jsx",
+      "community": 10
+    },
+    {
+      "label": "Settings()",
+      "file_type": "code",
+      "source_file": "src/screens/Settings.jsx",
+      "source_location": "L10",
+      "id": "settings_settings",
+      "community": 10
+    },
+    {
+      "label": "TaskDetail.jsx",
+      "file_type": "code",
+      "source_file": "src/screens/TaskDetail.jsx",
+      "source_location": "L1",
+      "id": "src_screens_taskdetail_jsx",
+      "community": 11
+    },
+    {
+      "label": "TaskDetail()",
+      "file_type": "code",
+      "source_file": "src/screens/TaskDetail.jsx",
+      "source_location": "L14",
+      "id": "taskdetail_taskdetail",
+      "community": 11
+    },
+    {
+      "label": "Matrix.jsx",
+      "file_type": "code",
+      "source_file": "src/screens/Matrix.jsx",
+      "source_location": "L1",
+      "id": "src_screens_matrix_jsx",
+      "community": 12
+    },
+    {
+      "label": "Matrix()",
+      "file_type": "code",
+      "source_file": "src/screens/Matrix.jsx",
+      "source_location": "L18",
+      "id": "matrix_matrix",
+      "community": 12
+    },
+    {
+      "label": "Icons.jsx",
+      "file_type": "code",
+      "source_file": "src/components/Icons.jsx",
+      "source_location": "L1",
+      "id": "src_components_icons_jsx",
+      "community": 0
+    },
+    {
+      "label": "IconPlus()",
+      "file_type": "code",
+      "source_file": "src/components/Icons.jsx",
+      "source_location": "L1",
+      "id": "icons_iconplus",
+      "community": 0
+    },
+    {
+      "label": "IconChevL()",
+      "file_type": "code",
+      "source_file": "src/components/Icons.jsx",
+      "source_location": "L7",
+      "id": "icons_iconchevl",
+      "community": 0
+    },
+    {
+      "label": "IconChevR()",
+      "file_type": "code",
+      "source_file": "src/components/Icons.jsx",
+      "source_location": "L13",
+      "id": "icons_iconchevr",
+      "community": 0
+    },
+    {
+      "label": "IconCheck()",
+      "file_type": "code",
+      "source_file": "src/components/Icons.jsx",
+      "source_location": "L19",
+      "id": "icons_iconcheck",
+      "community": 0
+    },
+    {
+      "label": "IconGrid()",
+      "file_type": "code",
+      "source_file": "src/components/Icons.jsx",
+      "source_location": "L25",
+      "id": "icons_icongrid",
+      "community": 0
+    },
+    {
+      "label": "IconClock()",
+      "file_type": "code",
+      "source_file": "src/components/Icons.jsx",
+      "source_location": "L34",
+      "id": "icons_iconclock",
+      "community": 0
+    },
+    {
+      "label": "IconGear()",
+      "file_type": "code",
+      "source_file": "src/components/Icons.jsx",
+      "source_location": "L41",
+      "id": "icons_icongear",
+      "community": 0
+    },
+    {
+      "label": "IconBell()",
+      "file_type": "code",
+      "source_file": "src/components/Icons.jsx",
+      "source_location": "L48",
+      "id": "icons_iconbell",
+      "community": 0
+    },
+    {
+      "label": "IconSearch()",
+      "file_type": "code",
+      "source_file": "src/components/Icons.jsx",
+      "source_location": "L55",
+      "id": "icons_iconsearch",
+      "community": 0
+    },
+    {
+      "label": "GoogleG()",
+      "file_type": "code",
+      "source_file": "src/components/Icons.jsx",
+      "source_location": "L62",
+      "id": "icons_googleg",
+      "community": 0
+    },
+    {
+      "label": "TaskPill.jsx",
+      "file_type": "code",
+      "source_file": "src/components/TaskPill.jsx",
+      "source_location": "L1",
+      "id": "src_components_taskpill_jsx",
+      "community": 13
+    },
+    {
+      "label": "TaskPill()",
+      "file_type": "code",
+      "source_file": "src/components/TaskPill.jsx",
+      "source_location": "L1",
+      "id": "taskpill_taskpill",
+      "community": 13
+    },
+    {
+      "label": "PillSwitch.jsx",
+      "file_type": "code",
+      "source_file": "src/components/PillSwitch.jsx",
+      "source_location": "L1",
+      "id": "src_components_pillswitch_jsx",
+      "community": 14
+    },
+    {
+      "label": "PillSwitch()",
+      "file_type": "code",
+      "source_file": "src/components/PillSwitch.jsx",
+      "source_location": "L1",
+      "id": "pillswitch_pillswitch",
+      "community": 14
+    },
+    {
+      "label": "StatusBar.jsx",
+      "file_type": "code",
+      "source_file": "src/components/StatusBar.jsx",
+      "source_location": "L1",
+      "id": "src_components_statusbar_jsx",
+      "community": 15
+    },
+    {
+      "label": "StatusBar()",
+      "file_type": "code",
+      "source_file": "src/components/StatusBar.jsx",
+      "source_location": "L1",
+      "id": "statusbar_statusbar",
+      "community": 15
+    },
+    {
+      "label": "FAB.jsx",
+      "file_type": "code",
+      "source_file": "src/components/FAB.jsx",
+      "source_location": "L1",
+      "id": "src_components_fab_jsx",
+      "community": 16
+    },
+    {
+      "label": "FAB()",
+      "file_type": "code",
+      "source_file": "src/components/FAB.jsx",
+      "source_location": "L3",
+      "id": "fab_fab",
+      "community": 16
+    },
+    {
+      "label": "Toggle.jsx",
+      "file_type": "code",
+      "source_file": "src/components/Toggle.jsx",
+      "source_location": "L1",
+      "id": "src_components_toggle_jsx",
+      "community": 17
+    },
+    {
+      "label": "Toggle()",
+      "file_type": "code",
+      "source_file": "src/components/Toggle.jsx",
+      "source_location": "L1",
+      "id": "toggle_toggle",
+      "community": 17
+    },
+    {
+      "label": "Badge.jsx",
+      "file_type": "code",
+      "source_file": "src/components/Badge.jsx",
+      "source_location": "L1",
+      "id": "src_components_badge_jsx",
+      "community": 18
+    },
+    {
+      "label": "Badge()",
+      "file_type": "code",
+      "source_file": "src/components/Badge.jsx",
+      "source_location": "L8",
+      "id": "badge_badge",
+      "community": 18
+    },
+    {
+      "label": "TopBar.jsx",
+      "file_type": "code",
+      "source_file": "src/components/TopBar.jsx",
+      "source_location": "L1",
+      "id": "src_components_topbar_jsx",
+      "community": 19
+    },
+    {
+      "label": "TopBar()",
+      "file_type": "code",
+      "source_file": "src/components/TopBar.jsx",
+      "source_location": "L1",
+      "id": "topbar_topbar",
+      "community": 19
+    },
+    {
+      "label": "Wheel.jsx",
+      "file_type": "code",
+      "source_file": "src/components/Wheel.jsx",
+      "source_location": "L1",
+      "id": "src_components_wheel_jsx",
+      "community": 20
+    },
+    {
+      "label": "Wheel()",
+      "file_type": "code",
+      "source_file": "src/components/Wheel.jsx",
+      "source_location": "L3",
+      "id": "wheel_wheel",
+      "community": 20
+    },
+    {
+      "label": "BottomNav.jsx",
+      "file_type": "code",
+      "source_file": "src/components/BottomNav.jsx",
+      "source_location": "L1",
+      "id": "src_components_bottomnav_jsx",
+      "community": 21
+    },
+    {
+      "label": "BottomNav()",
+      "file_type": "code",
+      "source_file": "src/components/BottomNav.jsx",
+      "source_location": "L10",
+      "id": "bottomnav_bottomnav",
+      "community": 21
+    },
+    {
+      "label": "supabase.js",
+      "file_type": "code",
+      "source_file": "src/lib/supabase.js",
+      "source_location": "L1",
+      "id": "src_lib_supabase_js",
+      "community": 26
+    },
+    {
+      "label": "React + Vite Template Documentation",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "readme_react_vite_template",
+      "community": 1
+    },
+    {
+      "label": "Vite Build Tool",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "line 3",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "readme_vite",
+      "community": 1
+    },
+    {
+      "label": "React Framework",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "line 3",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "readme_react",
+      "community": 1
+    },
+    {
+      "label": "@vitejs/plugin-react (Oxc)",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "line 7",
+      "source_url": "https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react",
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "readme_plugin_react",
+      "community": 1
+    },
+    {
+      "label": "@vitejs/plugin-react-swc (SWC)",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "line 8",
+      "source_url": "https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc",
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "readme_plugin_react_swc",
+      "community": 1
+    },
+    {
+      "label": "Oxc Compiler",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "line 7",
+      "source_url": "https://oxc.rs",
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "readme_oxc",
+      "community": 1
+    },
+    {
+      "label": "SWC Compiler",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "line 8",
+      "source_url": "https://swc.rs/",
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "readme_swc",
+      "community": 1
+    },
+    {
+      "label": "React Compiler",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "line 10-11",
+      "source_url": "https://react.dev/learn/react-compiler/installation",
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "readme_react_compiler",
+      "community": 22
+    },
+    {
+      "label": "ESLint Configuration",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "line 14-16",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "readme_eslint",
+      "community": 7
+    },
+    {
+      "label": "typescript-eslint",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "line 16",
+      "source_url": "https://typescript-eslint.io",
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "readme_typescript_eslint",
+      "community": 7
+    },
+    {
+      "label": "SVG Icon Sprite Sheet",
+      "file_type": "image",
+      "source_file": "public/icons.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "icons_sprite",
+      "community": 2
+    },
+    {
+      "label": "Bluesky Social Icon",
+      "file_type": "image",
+      "source_file": "public/icons.svg",
+      "source_location": "symbol#bluesky-icon",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "icons_bluesky",
+      "community": 2
+    },
+    {
+      "label": "Discord Social Icon",
+      "file_type": "image",
+      "source_file": "public/icons.svg",
+      "source_location": "symbol#discord-icon",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "icons_discord",
+      "community": 2
+    },
+    {
+      "label": "Documentation Icon",
+      "file_type": "image",
+      "source_file": "public/icons.svg",
+      "source_location": "symbol#documentation-icon",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "icons_documentation",
+      "community": 2
+    },
+    {
+      "label": "GitHub Social Icon",
+      "file_type": "image",
+      "source_file": "public/icons.svg",
+      "source_location": "symbol#github-icon",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "icons_github",
+      "community": 2
+    },
+    {
+      "label": "Social/Star Icon",
+      "file_type": "image",
+      "source_file": "public/icons.svg",
+      "source_location": "symbol#social-icon",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "icons_social",
+      "community": 2
+    },
+    {
+      "label": "X (Twitter) Social Icon",
+      "file_type": "image",
+      "source_file": "public/icons.svg",
+      "source_location": "symbol#x-icon",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "icons_x",
+      "community": 2
+    },
+    {
+      "label": "Favicon - Purple Lightning Bolt",
+      "file_type": "image",
+      "source_file": "public/favicon.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "favicon_lightning",
+      "community": 1
+    },
+    {
+      "label": "Rationale: React Compiler Disabled (Performance Impact)",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "line 11",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "readme_rationale_no_react_compiler",
+      "community": 22
+    },
+    {
+      "label": "Rationale: TypeScript Recommended for Production",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "line 16",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "readme_rationale_typescript_recommended",
+      "community": 7
+    }
+  ],
+  "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/App.jsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "_src": "src_app_jsx",
+      "_tgt": "app_authgate",
+      "source": "src_app_jsx",
+      "target": "app_authgate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/App.jsx",
+      "source_location": "L17",
+      "weight": 1.0,
+      "_src": "src_app_jsx",
+      "_tgt": "app_logingate",
+      "source": "src_app_jsx",
+      "target": "app_logingate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/App.jsx",
+      "source_location": "L25",
+      "weight": 1.0,
+      "_src": "src_app_jsx",
+      "_tgt": "app_onboardinggate",
+      "source": "src_app_jsx",
+      "target": "app_onboardinggate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/App.jsx",
+      "source_location": "L33",
+      "weight": 1.0,
+      "_src": "src_app_jsx",
+      "_tgt": "app_loadingscreen",
+      "source": "src_app_jsx",
+      "target": "app_loadingscreen",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/App.jsx",
+      "source_location": "L61",
+      "weight": 1.0,
+      "_src": "src_app_jsx",
+      "_tgt": "app_app",
+      "source": "src_app_jsx",
+      "target": "app_app",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/context/TaskContext.jsx",
+      "source_location": "L17",
+      "weight": 1.0,
+      "_src": "src_context_taskcontext_jsx",
+      "_tgt": "taskcontext_rowtotask",
+      "source": "src_context_taskcontext_jsx",
+      "target": "taskcontext_rowtotask",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/context/TaskContext.jsx",
+      "source_location": "L32",
+      "weight": 1.0,
+      "_src": "src_context_taskcontext_jsx",
+      "_tgt": "taskcontext_taskprovider",
+      "source": "src_context_taskcontext_jsx",
+      "target": "taskcontext_taskprovider",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/context/TaskContext.jsx",
+      "source_location": "L168",
+      "weight": 1.0,
+      "_src": "src_context_taskcontext_jsx",
+      "_tgt": "taskcontext_usetasks",
+      "source": "src_context_taskcontext_jsx",
+      "target": "taskcontext_usetasks",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/screens/Onboarding.jsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_src": "src_screens_onboarding_jsx",
+      "_tgt": "onboarding_matrixthumb",
+      "source": "src_screens_onboarding_jsx",
+      "target": "onboarding_matrixthumb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/screens/Onboarding.jsx",
+      "source_location": "L74",
+      "weight": 1.0,
+      "_src": "src_screens_onboarding_jsx",
+      "_tgt": "onboarding_onboarding",
+      "source": "src_screens_onboarding_jsx",
+      "target": "onboarding_onboarding",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/screens/Timeline.jsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_src": "src_screens_timeline_jsx",
+      "_tgt": "timeline_timecard",
+      "source": "src_screens_timeline_jsx",
+      "target": "timeline_timecard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/screens/Timeline.jsx",
+      "source_location": "L60",
+      "weight": 1.0,
+      "_src": "src_screens_timeline_jsx",
+      "_tgt": "timeline_timeline",
+      "source": "src_screens_timeline_jsx",
+      "target": "timeline_timeline",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/screens/NewTask.jsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_src": "src_screens_newtask_jsx",
+      "_tgt": "newtask_newtask",
+      "source": "src_screens_newtask_jsx",
+      "target": "newtask_newtask",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/screens/Login.jsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_src": "src_screens_login_jsx",
+      "_tgt": "login_login",
+      "source": "src_screens_login_jsx",
+      "target": "login_login",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/screens/Settings.jsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_src": "src_screens_settings_jsx",
+      "_tgt": "settings_settings",
+      "source": "src_screens_settings_jsx",
+      "target": "settings_settings",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/screens/TaskDetail.jsx",
+      "source_location": "L14",
+      "weight": 1.0,
+      "_src": "src_screens_taskdetail_jsx",
+      "_tgt": "taskdetail_taskdetail",
+      "source": "src_screens_taskdetail_jsx",
+      "target": "taskdetail_taskdetail",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/screens/Matrix.jsx",
+      "source_location": "L18",
+      "weight": 1.0,
+      "_src": "src_screens_matrix_jsx",
+      "_tgt": "matrix_matrix",
+      "source": "src_screens_matrix_jsx",
+      "target": "matrix_matrix",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Icons.jsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_src": "src_components_icons_jsx",
+      "_tgt": "icons_iconplus",
+      "source": "src_components_icons_jsx",
+      "target": "icons_iconplus",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Icons.jsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_src": "src_components_icons_jsx",
+      "_tgt": "icons_iconchevl",
+      "source": "src_components_icons_jsx",
+      "target": "icons_iconchevl",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Icons.jsx",
+      "source_location": "L13",
+      "weight": 1.0,
+      "_src": "src_components_icons_jsx",
+      "_tgt": "icons_iconchevr",
+      "source": "src_components_icons_jsx",
+      "target": "icons_iconchevr",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Icons.jsx",
+      "source_location": "L19",
+      "weight": 1.0,
+      "_src": "src_components_icons_jsx",
+      "_tgt": "icons_iconcheck",
+      "source": "src_components_icons_jsx",
+      "target": "icons_iconcheck",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Icons.jsx",
+      "source_location": "L25",
+      "weight": 1.0,
+      "_src": "src_components_icons_jsx",
+      "_tgt": "icons_icongrid",
+      "source": "src_components_icons_jsx",
+      "target": "icons_icongrid",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Icons.jsx",
+      "source_location": "L34",
+      "weight": 1.0,
+      "_src": "src_components_icons_jsx",
+      "_tgt": "icons_iconclock",
+      "source": "src_components_icons_jsx",
+      "target": "icons_iconclock",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Icons.jsx",
+      "source_location": "L41",
+      "weight": 1.0,
+      "_src": "src_components_icons_jsx",
+      "_tgt": "icons_icongear",
+      "source": "src_components_icons_jsx",
+      "target": "icons_icongear",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Icons.jsx",
+      "source_location": "L48",
+      "weight": 1.0,
+      "_src": "src_components_icons_jsx",
+      "_tgt": "icons_iconbell",
+      "source": "src_components_icons_jsx",
+      "target": "icons_iconbell",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Icons.jsx",
+      "source_location": "L55",
+      "weight": 1.0,
+      "_src": "src_components_icons_jsx",
+      "_tgt": "icons_iconsearch",
+      "source": "src_components_icons_jsx",
+      "target": "icons_iconsearch",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Icons.jsx",
+      "source_location": "L62",
+      "weight": 1.0,
+      "_src": "src_components_icons_jsx",
+      "_tgt": "icons_googleg",
+      "source": "src_components_icons_jsx",
+      "target": "icons_googleg",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/TaskPill.jsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_src": "src_components_taskpill_jsx",
+      "_tgt": "taskpill_taskpill",
+      "source": "src_components_taskpill_jsx",
+      "target": "taskpill_taskpill",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/PillSwitch.jsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_src": "src_components_pillswitch_jsx",
+      "_tgt": "pillswitch_pillswitch",
+      "source": "src_components_pillswitch_jsx",
+      "target": "pillswitch_pillswitch",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/StatusBar.jsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_src": "src_components_statusbar_jsx",
+      "_tgt": "statusbar_statusbar",
+      "source": "src_components_statusbar_jsx",
+      "target": "statusbar_statusbar",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/FAB.jsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_src": "src_components_fab_jsx",
+      "_tgt": "fab_fab",
+      "source": "src_components_fab_jsx",
+      "target": "fab_fab",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Toggle.jsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_src": "src_components_toggle_jsx",
+      "_tgt": "toggle_toggle",
+      "source": "src_components_toggle_jsx",
+      "target": "toggle_toggle",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Badge.jsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_src": "src_components_badge_jsx",
+      "_tgt": "badge_badge",
+      "source": "src_components_badge_jsx",
+      "target": "badge_badge",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/TopBar.jsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_src": "src_components_topbar_jsx",
+      "_tgt": "topbar_topbar",
+      "source": "src_components_topbar_jsx",
+      "target": "topbar_topbar",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Wheel.jsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_src": "src_components_wheel_jsx",
+      "_tgt": "wheel_wheel",
+      "source": "src_components_wheel_jsx",
+      "target": "wheel_wheel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/BottomNav.jsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_src": "src_components_bottomnav_jsx",
+      "_tgt": "bottomnav_bottomnav",
+      "source": "src_components_bottomnav_jsx",
+      "target": "bottomnav_bottomnav",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "line 1",
+      "weight": 1.0,
+      "_src": "readme_react_vite_template",
+      "_tgt": "readme_react",
+      "source": "readme_react_vite_template",
+      "target": "readme_react"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "line 1",
+      "weight": 1.0,
+      "_src": "readme_react_vite_template",
+      "_tgt": "readme_vite",
+      "source": "readme_react_vite_template",
+      "target": "readme_vite"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.65,
+      "source_file": "public/icons.svg",
+      "source_location": null,
+      "weight": 0.5,
+      "_src": "icons_sprite",
+      "_tgt": "readme_react_vite_template",
+      "source": "readme_react_vite_template",
+      "target": "icons_sprite"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "line 7",
+      "weight": 1.0,
+      "_src": "readme_plugin_react",
+      "_tgt": "readme_vite",
+      "source": "readme_vite",
+      "target": "readme_plugin_react"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "line 8",
+      "weight": 1.0,
+      "_src": "readme_plugin_react_swc",
+      "_tgt": "readme_vite",
+      "source": "readme_vite",
+      "target": "readme_plugin_react_swc"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": "public/favicon.svg",
+      "source_location": null,
+      "weight": 0.6,
+      "_src": "favicon_lightning",
+      "_tgt": "readme_vite",
+      "source": "readme_vite",
+      "target": "favicon_lightning"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "line 7",
+      "weight": 1.0,
+      "_src": "readme_plugin_react",
+      "_tgt": "readme_oxc",
+      "source": "readme_plugin_react",
+      "target": "readme_oxc"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "line 8",
+      "weight": 1.0,
+      "_src": "readme_plugin_react_swc",
+      "_tgt": "readme_swc",
+      "source": "readme_plugin_react_swc",
+      "target": "readme_swc"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "line 11",
+      "weight": 1.0,
+      "_src": "readme_rationale_no_react_compiler",
+      "_tgt": "readme_react_compiler",
+      "source": "readme_react_compiler",
+      "target": "readme_rationale_no_react_compiler"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "line 16",
+      "weight": 1.0,
+      "_src": "readme_rationale_typescript_recommended",
+      "_tgt": "readme_eslint",
+      "source": "readme_eslint",
+      "target": "readme_rationale_typescript_recommended"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "line 16",
+      "weight": 1.0,
+      "_src": "readme_eslint",
+      "_tgt": "readme_typescript_eslint",
+      "source": "readme_eslint",
+      "target": "readme_typescript_eslint"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/icons.svg",
+      "source_location": "symbol#bluesky-icon",
+      "weight": 0.8,
+      "_src": "icons_bluesky",
+      "_tgt": "icons_sprite",
+      "source": "icons_sprite",
+      "target": "icons_bluesky"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/icons.svg",
+      "source_location": "symbol#discord-icon",
+      "weight": 0.8,
+      "_src": "icons_discord",
+      "_tgt": "icons_sprite",
+      "source": "icons_sprite",
+      "target": "icons_discord"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/icons.svg",
+      "source_location": "symbol#documentation-icon",
+      "weight": 0.8,
+      "_src": "icons_documentation",
+      "_tgt": "icons_sprite",
+      "source": "icons_sprite",
+      "target": "icons_documentation"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/icons.svg",
+      "source_location": "symbol#github-icon",
+      "weight": 0.8,
+      "_src": "icons_github",
+      "_tgt": "icons_sprite",
+      "source": "icons_sprite",
+      "target": "icons_github"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/icons.svg",
+      "source_location": "symbol#social-icon",
+      "weight": 0.8,
+      "_src": "icons_social",
+      "_tgt": "icons_sprite",
+      "source": "icons_sprite",
+      "target": "icons_social"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/icons.svg",
+      "source_location": "symbol#x-icon",
+      "weight": 0.8,
+      "_src": "icons_x",
+      "_tgt": "icons_sprite",
+      "source": "icons_sprite",
+      "target": "icons_x"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.6,
+      "source_file": "public/favicon.svg",
+      "source_location": null,
+      "weight": 0.5,
+      "_src": "favicon_lightning",
+      "_tgt": "icons_sprite",
+      "source": "icons_sprite",
+      "target": "favicon_lightning"
+    }
+  ],
+  "hyperedges": []
+}

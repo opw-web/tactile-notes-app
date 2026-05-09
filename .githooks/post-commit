@@ -1,0 +1,26 @@
+#!/bin/bash
+#
+# post-commit hook: appends structured entry to .claude/commit-log.md
+# Runs after every commit (manual or automated).
+#
+
+REPO_ROOT="$(git rev-parse --show-toplevel)"
+LOG_FILE="$REPO_ROOT/.claude/commit-log.md"
+
+mkdir -p "$(dirname "$LOG_FILE")"
+
+HASH=$(git log -1 --format='%h')
+DATE=$(git log -1 --format='%Y-%m-%d')
+SUBJECT=$(git log -1 --format='%s')
+BODY=$(git log -1 --format='%b' | head -5)
+FILES=$(git diff-tree --no-commit-id --name-only -r HEAD | tr '\n' ', ' | sed 's/, $//')
+
+{
+  echo ""
+  echo "## $DATE [$HASH]"
+  echo "**Subject:** $SUBJECT"
+  echo "**Files:** $FILES"
+  if [ -n "$BODY" ]; then
+    echo "**Body:** $BODY"
+  fi
+} >> "$LOG_FILE"
