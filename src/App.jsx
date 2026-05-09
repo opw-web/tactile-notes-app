@@ -32,7 +32,7 @@ function OnboardingGate() {
 
 function LoadingScreen() {
   return (
-    <div className="tactile" style={{ height: 844, display: "flex", alignItems: "center", justifyContent: "center" }}>
+    <div className="tactile" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
       <div style={{ textAlign: "center" }}>
         <div style={{
           padding: 14, borderRadius: 16,

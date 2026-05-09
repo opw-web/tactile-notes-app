@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import StatusBar from '../components/StatusBar';
 import { useTasks } from '../context/TaskContext';
 
 function MatrixThumb() {
@@ -88,8 +87,7 @@ export default function Onboarding() {
   const s = steps[step];
 
   return (
-    <div className="tactile" style={{ height: 844 }}>
-      <StatusBar />
+    <div className="tactile">
       <div style={{ filter: "blur(3px)", opacity: 0.7 }}>
         <MatrixThumb />
       </div>

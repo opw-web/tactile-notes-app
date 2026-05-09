@@ -1,4 +1,3 @@
-import StatusBar from '../components/StatusBar';
 import { GoogleG } from '../components/Icons';
 import { useTasks } from '../context/TaskContext';
 
@@ -6,11 +5,10 @@ export default function Login() {
   const { login } = useTasks();
 
   return (
-    <div className="tactile" style={{ height: 844 }}>
-      <StatusBar />
+    <div className="tactile">
       <div style={{
         display: "flex", flexDirection: "column", alignItems: "center",
-        padding: "60px 32px 0", height: "calc(100% - 44px)",
+        padding: "60px 32px 0", height: "100%",
       }}>
         {/* logo mark — extruded mini matrix */}
         <div style={{

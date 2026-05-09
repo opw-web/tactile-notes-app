@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import StatusBar from '../components/StatusBar';
 import TopBar from '../components/TopBar';
 import BottomNav from '../components/BottomNav';
 import PillSwitch from '../components/PillSwitch';
@@ -8,10 +7,8 @@ import Toggle from '../components/Toggle';
 import { useTasks } from '../context/TaskContext';
 
 export default function Settings() {
-  const { auth, logout } = useTasks();
+  const { auth, logout, hapticEnabled, soundEnabled, setHapticEnabled, setSoundEnabled } = useTasks();
   const navigate = useNavigate();
-  const [haptic, setHaptic] = useState(true);
-  const [sounds, setSounds] = useState(false);
   const [themeIdx, setThemeIdx] = useState(0);
 
   const user = auth.user || { name: "User", email: "", initials: "U" };
@@ -22,8 +19,7 @@ export default function Settings() {
   };
 
   return (
-    <div className="tactile" style={{ height: 844 }}>
-      <StatusBar />
+    <div className="tactile">
       <TopBar title="Settings" sub="CONTROL PANEL" />
       <div style={{ padding: "0 24px", overflowY: "auto", height: 680 }}>
         {/* profile block */}
@@ -63,14 +59,14 @@ export default function Settings() {
           display: "flex", justifyContent: "space-between", alignItems: "center",
         }}>
           <span className="t-body" style={{ fontWeight: 600, fontSize: 14 }}>Haptic feedback</span>
-          <Toggle on={haptic} onToggle={() => setHaptic(!haptic)} />
+          <Toggle on={hapticEnabled} onToggle={() => setHapticEnabled(!hapticEnabled)} />
         </div>
         <div className="card-out" style={{
           padding: "14px 18px", marginBottom: 8,
           display: "flex", justifyContent: "space-between", alignItems: "center",
         }}>
           <span className="t-body" style={{ fontWeight: 600, fontSize: 14 }}>Mechanical sounds</span>
-          <Toggle on={sounds} onToggle={() => setSounds(!sounds)} />
+          <Toggle on={soundEnabled} onToggle={() => setSoundEnabled(!soundEnabled)} />
         </div>
 
         {/* appearance */}

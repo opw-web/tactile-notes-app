@@ -1,0 +1,8 @@
+{
+  "name": "Tactile Studio",
+  "short_name": "Tactile",
+  "start_url": "/matrix",
+  "display": "standalone",
+  "background_color": "#E8E6E1",
+  "theme_color": "#E8E6E1"
+}

@@ -1,28 +1,46 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import PillSwitch from '../components/PillSwitch';
 import Toggle from '../components/Toggle';
 import Wheel from '../components/Wheel';
+import Sheet from '../components/Sheet';
 import { useTasks } from '../context/TaskContext';
+import { generateDateRange } from '../lib/dates';
 
 const PRIORITIES = ["high", "medium", "low"];
 const EFFORTS = ["quick-win", "steady", "heavy-lift"];
-const DATE_ITEMS = ["Oct 22","Oct 23","TODAY","Oct 25","Oct 26"];
-const DATE_VALUES = ["2024-10-22","2024-10-23","2024-10-24","2024-10-25","2024-10-26"];
-const DATE_ITEMS_FULL = ["Oct 21","Oct 22","Oct 23","TODAY","Oct 25","Oct 26","Oct 27"];
-const DATE_VALUES_FULL = ["2024-10-21","2024-10-22","2024-10-23","2024-10-24","2024-10-25","2024-10-26","2024-10-27"];
+const HOURS = ["1","2","3","4","5","6","7","8","9","10","11","12"];
+const MINUTES = ["00","15","30","45"];
+const AMPM = ["AM","PM"];
+
+function parseTime(timeStr) {
+  if (!timeStr) return { hourIdx: 0, minuteIdx: 0, ampmIdx: 0 };
+  const match = timeStr.match(/^(\d+):(\d+)\s*(AM|PM)$/i);
+  if (!match) return { hourIdx: 0, minuteIdx: 0, ampmIdx: 0 };
+  const hour = parseInt(match[1]);
+  const min = parseInt(match[2]);
+  const ap = match[3].toUpperCase();
+  return {
+    hourIdx: Math.max(0, hour - 1),
+    minuteIdx: MINUTES.indexOf(String(min).padStart(2, '0')),
+    ampmIdx: ap === 'PM' ? 1 : 0,
+  };
+}
 
 export default function TaskDetail({ taskId, onClose }) {
   const { tasks, updateTask, deleteTask } = useTasks();
   const task = tasks.find(t => t.id === taskId);
   const [isFullScreen, setIsFullScreen] = useState(false);
 
+  const dateRange = useMemo(() => generateDateRange(15), []);
+
   if (!task) return null;
 
   const priorityIdx = PRIORITIES.indexOf(task.priority);
   const effortIdx = EFFORTS.indexOf(task.effort);
-  const dateIdx = isFullScreen
-    ? DATE_VALUES_FULL.indexOf(task.date)
-    : DATE_VALUES.indexOf(task.date);
+  const dateIdx = dateRange.values.indexOf(task.date);
+  const activeDateIdx = dateIdx >= 0 ? dateIdx : dateRange.todayIndex;
+
+  const time = parseTime(task.time);
 
   const handleSave = () => onClose();
 
@@ -32,14 +50,18 @@ export default function TaskDetail({ taskId, onClose }) {
   };
 
   const handleDateChange = (idx) => {
-    const values = isFullScreen ? DATE_VALUES_FULL : DATE_VALUES;
-    if (values[idx]) updateTask(taskId, { date: values[idx] });
+    if (dateRange.values[idx]) updateTask(taskId, { date: dateRange.values[idx] });
+  };
+
+  const handleTimeChange = (hourIdx, minIdx, ampmIdx) => {
+    const timeStr = `${HOURS[hourIdx]}:${MINUTES[minIdx]} ${AMPM[ampmIdx]}`;
+    updateTask(taskId, { time: timeStr });
   };
 
   if (isFullScreen) {
     return (
       <>
-        <div className="frost" onClick={onClose}></div>
+        <div className="frost frost-in" onClick={onClose}></div>
         <div style={{
           position: "absolute", inset: 0, zIndex: 11,
           background: "rgba(242, 240, 236, 0.95)",
@@ -72,7 +94,7 @@ export default function TaskDetail({ taskId, onClose }) {
             <div style={{ display: "flex", gap: 14, marginTop: 18 }}>
               <div>
                 <div className="t-eyebrow" style={{ marginBottom: 6 }}>DATE</div>
-                <Wheel items={DATE_ITEMS_FULL} active={dateIdx >= 0 ? dateIdx : 3} w={114} h={170} onChange={handleDateChange} />
+                <Wheel items={dateRange.labels} active={activeDateIdx} w={114} h={170} onChange={handleDateChange} />
               </div>
               <div style={{ flex: 1 }}>
                 <div className="t-eyebrow" style={{ marginBottom: 6 }}>TIME</div>
@@ -80,10 +102,10 @@ export default function TaskDetail({ taskId, onClose }) {
                   <div className="t-body" style={{ fontWeight: 600, fontSize: 14 }}>All day</div>
                   <Toggle on={task.allDay} onToggle={() => updateTask(taskId, { allDay: !task.allDay })} />
                 </div>
-                <div style={{ marginTop: 10, display: "flex", gap: 6, justifyContent: "center" }}>
-                  <Wheel items={["1","2","3"]} active={1} w={42} h={104} />
-                  <Wheel items={["00","15","30","45"]} active={0} w={42} h={104} />
-                  <Wheel items={["AM","PM"]} active={1} w={42} h={104} />
+                <div style={{ marginTop: 10, opacity: task.allDay ? 0.4 : 1, transition: "opacity 0.2s", display: "flex", gap: 6, justifyContent: "center" }}>
+                  <Wheel items={HOURS} active={time.hourIdx} w={42} h={104} onChange={(i) => handleTimeChange(i, time.minuteIdx, time.ampmIdx)} />
+                  <Wheel items={MINUTES} active={time.minuteIdx >= 0 ? time.minuteIdx : 0} w={42} h={104} onChange={(i) => handleTimeChange(time.hourIdx, i, time.ampmIdx)} />
+                  <Wheel items={AMPM} active={time.ampmIdx} w={42} h={104} onChange={(i) => handleTimeChange(time.hourIdx, time.minuteIdx, i)} />
                 </div>
               </div>
             </div>
@@ -136,11 +158,10 @@ export default function TaskDetail({ taskId, onClose }) {
     );
   }
 
-  // Half-sheet mode
   return (
     <>
-      <div className="frost" onClick={onClose}></div>
-      <div className="sheet" style={{ height: 600, padding: "12px 24px 24px" }}>
+      <div className="frost frost-in" onClick={onClose}></div>
+      <div className="sheet sheet-in" style={{ height: 600, padding: "12px 24px 24px" }}>
         <div className="sheet-handle" style={{ cursor: "pointer" }} onClick={() => setIsFullScreen(true)}></div>
         <div
           className="t-eyebrow"
@@ -162,11 +183,10 @@ export default function TaskDetail({ taskId, onClose }) {
             }}
           />
 
-          {/* date + time */}
           <div style={{ display: "flex", gap: 14, marginTop: 14 }}>
             <div>
               <div className="t-eyebrow" style={{ marginBottom: 6 }}>DATE</div>
-              <Wheel items={DATE_ITEMS} active={dateIdx >= 0 ? dateIdx : 2} w={100} h={120} onChange={handleDateChange} />
+              <Wheel items={dateRange.labels} active={activeDateIdx} w={100} h={120} onChange={handleDateChange} />
             </div>
             <div style={{ flex: 1 }}>
               <div className="t-eyebrow" style={{ marginBottom: 6 }}>TIME</div>
@@ -174,15 +194,14 @@ export default function TaskDetail({ taskId, onClose }) {
                 <div className="t-body" style={{ fontWeight: 600, fontSize: 13 }}>All day</div>
                 <Toggle on={task.allDay} onToggle={() => updateTask(taskId, { allDay: !task.allDay })} />
               </div>
-              <div style={{ marginTop: 8, display: "flex", gap: 4, justifyContent: "center" }}>
-                <Wheel items={["1","2","3"]} active={1} w={36} h={72} />
-                <Wheel items={["00","15","30"]} active={0} w={36} h={72} />
-                <Wheel items={["AM","PM"]} active={1} w={36} h={72} />
+              <div style={{ marginTop: 8, opacity: task.allDay ? 0.4 : 1, transition: "opacity 0.2s", display: "flex", gap: 4, justifyContent: "center" }}>
+                <Wheel items={HOURS} active={time.hourIdx} w={36} h={72} onChange={(i) => handleTimeChange(i, time.minuteIdx, time.ampmIdx)} />
+                <Wheel items={MINUTES} active={time.minuteIdx >= 0 ? time.minuteIdx : 0} w={36} h={72} onChange={(i) => handleTimeChange(time.hourIdx, i, time.ampmIdx)} />
+                <Wheel items={AMPM} active={time.ampmIdx} w={36} h={72} onChange={(i) => handleTimeChange(time.hourIdx, time.minuteIdx, i)} />
               </div>
             </div>
           </div>
 
-          {/* description */}
           <div style={{ marginTop: 14 }}>
             <div className="t-eyebrow" style={{ marginBottom: 6 }}>DESCRIPTION</div>
             <div className="well" style={{ padding: "12px 14px", minHeight: 70 }}>
@@ -200,7 +219,6 @@ export default function TaskDetail({ taskId, onClose }) {
             </div>
           </div>
 
-          {/* priority */}
           <div style={{ marginTop: 12 }}>
             <div className="t-eyebrow" style={{ marginBottom: 6 }}>PRIORITY</div>
             <PillSwitch items={[
@@ -210,7 +228,6 @@ export default function TaskDetail({ taskId, onClose }) {
             ]} active={priorityIdx >= 0 ? priorityIdx : 0} onChange={(i) => updateTask(taskId, { priority: PRIORITIES[i] })} />
           </div>
 
-          {/* effort */}
           <div style={{ marginTop: 12 }}>
             <div className="t-eyebrow" style={{ marginBottom: 6 }}>EFFORT</div>
             <PillSwitch items={[
@@ -220,13 +237,9 @@ export default function TaskDetail({ taskId, onClose }) {
             ]} active={effortIdx >= 0 ? effortIdx : 0} onChange={(i) => updateTask(taskId, { effort: EFFORTS[i] })} />
           </div>
 
-          {/* actions */}
           <div style={{ display: "flex", gap: 10, marginTop: 14 }}>
             <button className="btn-secondary t-btn btn-danger" style={{ flex: 1 }} onClick={handleDelete}>DELETE</button>
             <button className="btn-primary t-btn" style={{ flex: 1, height: 52 }} onClick={handleSave}>SAVE</button>
-          </div>
-          <div className="t-small" style={{ textAlign: "center", marginTop: 10, fontSize: 9, opacity: 0.7 }}>
-            ↕ scroll · pull down to dismiss
           </div>
         </div>
       </div>

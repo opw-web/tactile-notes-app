@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import StatusBar from '../components/StatusBar';
 import TopBar from '../components/TopBar';
 import BottomNav from '../components/BottomNav';
 import FAB from '../components/FAB';
 import TaskPill from '../components/TaskPill';
 import { IconSearch, IconBell } from '../components/Icons';
 import { useTasks } from '../context/TaskContext';
+import { useFeedback } from '../hooks/useFeedback';
 import NewTask from './NewTask';
 import TaskDetail from './TaskDetail';
 
@@ -17,6 +17,7 @@ const ROW_COLORS = ["var(--color-primary)", "var(--color-brass)", "var(--color-t
 
 export default function Matrix() {
   const { tasks, updateTask, PRIORITY_COLORS } = useTasks();
+  const { tick, snap } = useFeedback();
   const [showNewTask, setShowNewTask] = useState(false);
   const [selectedTaskId, setSelectedTaskId] = useState(null);
   const [dragOverCell, setDragOverCell] = useState(null);
@@ -27,6 +28,7 @@ export default function Matrix() {
   const unsorted = tasks.filter(t => !t.priority || !t.effort);
 
   const handleDragStart = (e, taskId) => {
+    tick();
     e.dataTransfer.setData("text/plain", taskId);
   };
 
@@ -44,16 +46,16 @@ export default function Matrix() {
     setDragOverCell(null);
     const taskId = e.dataTransfer.getData("text/plain");
     if (taskId) {
+      snap();
       updateTask(taskId, { priority, effort });
     }
   };
 
   return (
-    <div className="tactile" style={{ height: 844 }}>
-      <StatusBar />
+    <div className="tactile">
       <TopBar
         title="Matrix"
-        sub="WED · OCT 24"
+        sub={new Date().toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' }).toUpperCase()}
         right={<>
           <button className="icon-btn" style={{ border: "none", cursor: "pointer" }}><IconSearch /></button>
           <button className="icon-btn" style={{ border: "none", cursor: "pointer" }}><IconBell /></button>
@@ -130,7 +132,7 @@ export default function Matrix() {
       <FAB onClick={() => setShowNewTask(true)} />
       <BottomNav />
 
-      {showNewTask && <NewTask onClose={() => setShowNewTask(false)} />}
+      <NewTask open={showNewTask} onClose={() => setShowNewTask(false)} />
       {selectedTaskId && (
         <TaskDetail
           taskId={selectedTaskId}

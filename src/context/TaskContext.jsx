@@ -34,6 +34,24 @@ export function TaskProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [hasOnboarded, setHasOnboarded] = useState(false);
+  const [hapticEnabled, setHapticEnabledState] = useState(() => {
+    const stored = localStorage.getItem('tactile-haptic');
+    return stored === null ? true : stored === 'true';
+  });
+  const [soundEnabled, setSoundEnabledState] = useState(() => {
+    const stored = localStorage.getItem('tactile-sound');
+    return stored === null ? false : stored === 'true';
+  });
+
+  const setHapticEnabled = (val) => {
+    setHapticEnabledState(val);
+    localStorage.setItem('tactile-haptic', String(val));
+  };
+
+  const setSoundEnabled = (val) => {
+    setSoundEnabledState(val);
+    localStorage.setItem('tactile-sound', String(val));
+  };
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -157,6 +175,7 @@ export function TaskProvider({ children }) {
     <TaskContext.Provider value={{
       tasks, addTask, updateTask, deleteTask, toggleDone,
       auth, login, logout, completeOnboarding, loading,
+      hapticEnabled, soundEnabled, setHapticEnabled, setSoundEnabled,
       PRIORITY_COLORS, PRIORITY_LABELS, EFFORT_LABELS,
       PRIORITY_BADGE_KIND, EFFORT_BADGE_KIND,
     }}>

@@ -1,17 +1,19 @@
 import { useState } from 'react';
-import StatusBar from '../components/StatusBar';
 import TopBar from '../components/TopBar';
 import BottomNav from '../components/BottomNav';
 import FAB from '../components/FAB';
 import Badge from '../components/Badge';
 import { IconSearch, IconBell, IconCheck } from '../components/Icons';
 import { useTasks } from '../context/TaskContext';
+import { useFeedback } from '../hooks/useFeedback';
 import NewTask from './NewTask';
 import TaskDetail from './TaskDetail';
 
+const todayStr = new Date().toISOString().slice(0, 10);
+
 function TimeCard({ task, onToggle, onClick }) {
   const { PRIORITY_LABELS, PRIORITY_BADGE_KIND, EFFORT_LABELS, EFFORT_BADGE_KIND } = useTasks();
-  const isOverdue = task.date < "2024-10-24" && !task.done;
+  const isOverdue = task.date < todayStr && !task.done;
 
   return (
     <div
@@ -50,26 +52,58 @@ function TimeCard({ task, onToggle, onClick }) {
   );
 }
 
-const DATE_SECTIONS = [
-  { date: "2024-10-22", big: "OVERDUE", sub: "Oct 22 · Mon", knob: "danger" },
-  { date: "2024-10-24", big: "TODAY", sub: "Oct 24 · Wed", knob: "primary", emphasize: true },
-  { date: "2024-10-25", big: "TOMORROW", sub: "Oct 25 · Thu", knob: "text" },
-  { date: "2024-10-28", big: "OCT 28", sub: "Tue", knob: "muted" },
-];
+function buildSections(tasks) {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const tomorrow = new Date(today);
+  tomorrow.setDate(today.getDate() + 1);
+  const tomorrowStr = tomorrow.toISOString().slice(0, 10);
+
+  const dateMap = {};
+  tasks.forEach(t => {
+    if (!t.date) return;
+    if (!dateMap[t.date]) dateMap[t.date] = [];
+    dateMap[t.date].push(t);
+  });
+
+  const dates = Object.keys(dateMap).sort();
+  return dates.map(date => {
+    const d = new Date(date + 'T00:00:00');
+    const dayLabel = d.toLocaleDateString('en-US', { weekday: 'short' });
+    const dateLabel = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    let big, sub, knob, emphasize = false;
+    if (date === todayStr) {
+      big = "TODAY";
+      sub = `${dateLabel} · ${dayLabel}`;
+      knob = "primary";
+      emphasize = true;
+    } else if (date === tomorrowStr) {
+      big = "TOMORROW";
+      sub = `${dateLabel} · ${dayLabel}`;
+      knob = "text";
+    } else if (date < todayStr) {
+      big = "OVERDUE";
+      sub = `${dateLabel} · ${dayLabel}`;
+      knob = "danger";
+    } else {
+      big = dateLabel.toUpperCase();
+      sub = dayLabel;
+      knob = "muted";
+    }
+    return { date, big, sub, knob, emphasize, items: dateMap[date] };
+  });
+}
 
 export default function Timeline() {
   const { tasks, toggleDone } = useTasks();
+  const { heavy } = useFeedback();
   const [showNewTask, setShowNewTask] = useState(false);
   const [selectedTaskId, setSelectedTaskId] = useState(null);
 
-  const sections = DATE_SECTIONS.map(sec => ({
-    ...sec,
-    items: tasks.filter(t => t.date === sec.date),
-  })).filter(sec => sec.items.length > 0);
+  const sections = buildSections(tasks);
 
   return (
-    <div className="tactile" style={{ height: 844 }}>
-      <StatusBar />
+    <div className="tactile">
       <TopBar
         title="Timeline"
         sub="UPCOMING OPS"
@@ -124,7 +158,7 @@ export default function Timeline() {
                   <TimeCard
                     key={t.id}
                     task={t}
-                    onToggle={() => toggleDone(t.id)}
+                    onToggle={() => { heavy(); toggleDone(t.id); }}
                     onClick={() => setSelectedTaskId(t.id)}
                   />
                 ))}
@@ -138,7 +172,7 @@ export default function Timeline() {
       <FAB onClick={() => setShowNewTask(true)} />
       <BottomNav />
 
-      {showNewTask && <NewTask onClose={() => setShowNewTask(false)} />}
+      <NewTask open={showNewTask} onClose={() => setShowNewTask(false)} />
       {selectedTaskId && (
         <TaskDetail
           taskId={selectedTaskId}
