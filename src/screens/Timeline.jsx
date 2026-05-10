@@ -3,7 +3,8 @@ import TopBar from '../components/TopBar';
 import BottomNav from '../components/BottomNav';
 import FAB from '../components/FAB';
 import Badge from '../components/Badge';
-import { IconSearch, IconBell, IconCheck } from '../components/Icons';
+import Sheet from '../components/Sheet';
+import { IconCheck, IconSearch, IconBell } from '../components/Icons';
 import { useTasks } from '../context/TaskContext';
 import { useFeedback } from '../hooks/useFeedback';
 import NewTask from './NewTask';
@@ -96,11 +97,21 @@ function buildSections(tasks) {
 
 export default function Timeline() {
   const { tasks, toggleDone } = useTasks();
-  const { heavy } = useFeedback();
+  const { tick, heavy } = useFeedback();
   const [showNewTask, setShowNewTask] = useState(false);
   const [selectedTaskId, setSelectedTaskId] = useState(null);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQ, setSearchQ] = useState('');
+  const [overdueOpen, setOverdueOpen] = useState(false);
 
-  const sections = buildSections(tasks);
+  const filteredTasks = searchQ.trim()
+    ? tasks.filter(t =>
+        t.title.toLowerCase().includes(searchQ.toLowerCase()) ||
+        (t.description || '').toLowerCase().includes(searchQ.toLowerCase()))
+    : tasks;
+  const sections = buildSections(filteredTasks);
+  const overdue = tasks.filter(t => t.date && t.date < todayStr && !t.done);
+  const matchedTasks = searchQ.trim() ? filteredTasks : [];
 
   return (
     <div className="tactile">
@@ -108,8 +119,27 @@ export default function Timeline() {
         title="Timeline"
         sub="UPCOMING OPS"
         right={<>
-          <button className="icon-btn" style={{ border: "none", cursor: "pointer" }}><IconSearch /></button>
-          <button className="icon-btn" style={{ border: "none", cursor: "pointer" }}><IconBell /></button>
+          <button
+            className="icon-btn"
+            style={{ border: "none", cursor: "pointer" }}
+            onClick={() => { tick(); setSearchOpen(true); }}
+            aria-label="Search"
+          ><IconSearch /></button>
+          <button
+            className="icon-btn"
+            style={{ border: "none", cursor: "pointer", position: "relative" }}
+            onClick={() => { tick(); setOverdueOpen(true); }}
+            aria-label="Overdue"
+          >
+            <IconBell />
+            {overdue.length > 0 && (
+              <span style={{
+                position: "absolute", top: 6, right: 6,
+                width: 8, height: 8, borderRadius: "50%",
+                background: "var(--color-danger)",
+              }}></span>
+            )}
+          </button>
         </>}
       />
       <div style={{ padding: "0 24px", position: "relative", overflowY: "auto", height: "calc(100dvh - 180px)", paddingBottom: 100 }}>
@@ -179,6 +209,91 @@ export default function Timeline() {
           onClose={() => setSelectedTaskId(null)}
         />
       )}
+
+      {/* Search sheet */}
+      <Sheet open={searchOpen} onClose={() => { setSearchOpen(false); setSearchQ(''); }} height={560}>
+        <div className="t-eyebrow" style={{ fontSize: 10 }}>SEARCH TASKS</div>
+        <input
+          type="text"
+          value={searchQ}
+          onChange={(e) => setSearchQ(e.target.value)}
+          placeholder="Type to search..."
+          autoFocus
+          style={{
+            marginTop: 12, width: "100%",
+            background: "var(--color-background)",
+            boxShadow: "var(--shadow-in)",
+            borderRadius: 12, border: "none", outline: "none",
+            padding: "14px 16px",
+            fontFamily: "var(--font-body)", fontWeight: 500, fontSize: 16,
+            color: "var(--color-text)",
+          }}
+        />
+        <div style={{ marginTop: 14, maxHeight: 380, overflowY: "auto", display: "flex", flexDirection: "column", gap: 8 }}>
+          {searchQ.trim() === '' && (
+            <div className="t-small" style={{ textAlign: "center", padding: 20, color: "var(--color-muted)" }}>
+              Search across all your tasks.
+            </div>
+          )}
+          {searchQ.trim() !== '' && matchedTasks.length === 0 && (
+            <div className="t-small" style={{ textAlign: "center", padding: 20, color: "var(--color-muted)" }}>
+              No matches for "{searchQ}".
+            </div>
+          )}
+          {matchedTasks.map(t => (
+            <button
+              key={t.id}
+              onClick={() => { setSearchOpen(false); setSearchQ(''); setSelectedTaskId(t.id); }}
+              className="card-out"
+              style={{
+                padding: "12px 14px", border: "none", cursor: "pointer",
+                background: "var(--color-surface)",
+                textAlign: "left", display: "flex", flexDirection: "column", gap: 4,
+              }}
+            >
+              <div className="t-display" style={{ fontSize: 14 }}>{t.title}</div>
+              <div className="t-small" style={{ fontSize: 10 }}>
+                {t.priority || 'unsorted'} · {t.effort || 'unsorted'} · {t.date}
+              </div>
+            </button>
+          ))}
+        </div>
+      </Sheet>
+
+      {/* Overdue sheet */}
+      <Sheet open={overdueOpen} onClose={() => setOverdueOpen(false)} height={560}>
+        <div className="t-eyebrow" style={{ fontSize: 10, color: overdue.length > 0 ? "var(--color-danger)" : "var(--color-muted)" }}>
+          {overdue.length > 0 ? `${overdue.length} OVERDUE` : 'NO OVERDUE TASKS'}
+        </div>
+        <div className="t-small" style={{ marginTop: 6, color: "var(--color-muted)" }}>
+          Tasks past their due date that haven't been completed.
+        </div>
+        <div style={{ marginTop: 14, maxHeight: 480, overflowY: "auto", display: "flex", flexDirection: "column", gap: 8 }}>
+          {overdue.length === 0 && (
+            <div className="t-small" style={{ textAlign: "center", padding: 20, color: "var(--color-muted)" }}>
+              You're all caught up.
+            </div>
+          )}
+          {overdue.map(t => (
+            <button
+              key={t.id}
+              onClick={() => { setOverdueOpen(false); setSelectedTaskId(t.id); }}
+              className="card-out"
+              style={{
+                padding: "12px 14px", border: "none", cursor: "pointer",
+                background: "var(--color-surface)",
+                textAlign: "left", display: "flex", flexDirection: "column", gap: 4,
+                borderLeft: "3px solid var(--color-danger)",
+              }}
+            >
+              <div className="t-display" style={{ fontSize: 14 }}>{t.title}</div>
+              <div className="t-small" style={{ fontSize: 10 }}>
+                Due {t.date} · {t.priority || 'unsorted'}
+              </div>
+            </button>
+          ))}
+        </div>
+      </Sheet>
     </div>
   );
 }

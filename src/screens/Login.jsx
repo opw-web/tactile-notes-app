@@ -8,7 +8,7 @@ export default function Login() {
     <div className="tactile">
       <div style={{
         display: "flex", flexDirection: "column", alignItems: "center",
-        padding: "60px 32px 0", height: "100%",
+        padding: "60px 32px 0", minHeight: "100dvh",
       }}>
         {/* logo mark — extruded mini matrix */}
         <div style={{

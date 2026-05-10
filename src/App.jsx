@@ -47,19 +47,24 @@ function AuthGate({ children }) {
 }
 
 function LoginGate() {
-  const { auth, loading } = useTasks();
+  const { auth, loading, defaultView } = useTasks();
   if (loading) return <LoadingScreen />;
-  if (auth.isLoggedIn && auth.hasOnboarded) return <Navigate to="/matrix" replace />;
+  if (auth.isLoggedIn && auth.hasOnboarded) return <Navigate to={`/${defaultView}`} replace />;
   if (auth.isLoggedIn && !auth.hasOnboarded) return <Navigate to="/onboarding" replace />;
   return <Login />;
 }
 
 function OnboardingGate() {
-  const { auth, loading } = useTasks();
+  const { auth, loading, defaultView } = useTasks();
   if (loading) return <LoadingScreen />;
   if (!auth.isLoggedIn) return <Navigate to="/login" replace />;
-  if (auth.hasOnboarded) return <Navigate to="/matrix" replace />;
+  if (auth.hasOnboarded) return <Navigate to={`/${defaultView}`} replace />;
   return <Onboarding />;
+}
+
+function RootRedirect() {
+  const { defaultView } = useTasks();
+  return <Navigate to={`/${defaultView}`} replace />;
 }
 
 function LoadingScreen() {
@@ -100,7 +105,7 @@ function App() {
           <Route path="/matrix" element={<AuthGate><Matrix /></AuthGate>} />
           <Route path="/timeline" element={<AuthGate><Timeline /></AuthGate>} />
           <Route path="/settings" element={<AuthGate><Settings /></AuthGate>} />
-          <Route path="*" element={<Navigate to="/matrix" replace />} />
+          <Route path="*" element={<AuthGate><RootRedirect /></AuthGate>} />
         </Routes>
         <AddToHomeScreenBanner />
       </TaskProvider>

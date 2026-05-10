@@ -1,31 +1,70 @@
 let audioCtx = null;
+let unlocked = false;
 
-function getAudioContext() {
+function ensureContext() {
   if (!audioCtx) {
     const Ctor = window.AudioContext || window.webkitAudioContext;
     if (!Ctor) return null;
-    audioCtx = new Ctor();
-  }
-  if (audioCtx.state === 'suspended') {
-    audioCtx.resume().catch(() => {});
+    try {
+      audioCtx = new Ctor();
+    } catch (e) {
+      return null;
+    }
   }
   return audioCtx;
 }
 
-function playTone(freq, duration, gain = 0.15) {
+function unlock() {
+  const ctx = ensureContext();
+  if (!ctx) return;
+  if (ctx.state === 'suspended') {
+    ctx.resume().catch(() => {});
+  }
+  // Play a silent buffer to fully unlock on iOS
   try {
-    const ctx = getAudioContext();
-    if (!ctx) return;
+    const buffer = ctx.createBuffer(1, 1, 22050);
+    const src = ctx.createBufferSource();
+    src.buffer = buffer;
+    src.connect(ctx.destination);
+    src.start(0);
+  } catch (e) {}
+  unlocked = true;
+}
+
+if (typeof window !== 'undefined') {
+  const onFirstInteract = () => {
+    unlock();
+    window.removeEventListener('touchstart', onFirstInteract, true);
+    window.removeEventListener('touchend', onFirstInteract, true);
+    window.removeEventListener('mousedown', onFirstInteract, true);
+    window.removeEventListener('keydown', onFirstInteract, true);
+    window.removeEventListener('click', onFirstInteract, true);
+  };
+  window.addEventListener('touchstart', onFirstInteract, true);
+  window.addEventListener('touchend', onFirstInteract, true);
+  window.addEventListener('mousedown', onFirstInteract, true);
+  window.addEventListener('keydown', onFirstInteract, true);
+  window.addEventListener('click', onFirstInteract, true);
+}
+
+function playTone(freq, duration, gain = 0.15) {
+  const ctx = ensureContext();
+  if (!ctx) return;
+  if (ctx.state === 'suspended') {
+    ctx.resume().catch(() => {});
+  }
+  try {
     const osc = ctx.createOscillator();
     const vol = ctx.createGain();
     osc.type = 'square';
     osc.frequency.value = freq;
-    vol.gain.setValueAtTime(gain, ctx.currentTime);
-    vol.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration / 1000);
+    const now = ctx.currentTime;
+    vol.gain.setValueAtTime(gain, now);
+    vol.gain.exponentialRampToValueAtTime(0.001, now + duration / 1000);
     osc.connect(vol);
     vol.connect(ctx.destination);
-    osc.start();
-    osc.stop(ctx.currentTime + duration / 1000);
+    osc.start(now);
+    osc.stop(now + duration / 1000);
   } catch (e) {}
 }
 
@@ -42,11 +81,15 @@ export function hapticHeavy() {
 }
 
 export function soundTick() {
-  playTone(1800, 3);
+  playTone(1500, 12, 0.18);
 }
 
 export function soundSnap() {
-  playTone(1200, 8, 0.2);
+  playTone(900, 22, 0.25);
+}
+
+export function soundHeavy() {
+  playTone(600, 35, 0.3);
 }
 
 export function feedback(type, { hapticEnabled = true, soundEnabled = false } = {}) {
@@ -58,6 +101,6 @@ export function feedback(type, { hapticEnabled = true, soundEnabled = false } = 
     if (soundEnabled) soundSnap();
   } else if (type === 'heavy') {
     if (hapticEnabled) hapticHeavy();
-    if (soundEnabled) soundSnap();
+    if (soundEnabled) soundHeavy();
   }
 }

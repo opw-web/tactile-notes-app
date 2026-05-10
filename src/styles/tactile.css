@@ -35,9 +35,46 @@
     inset 1px 1px 1px rgba(255, 255, 255, 0.4);
 }
 
+/* Dark theme */
+html[data-theme="dark"] {
+  --color-primary: #F08660;
+  --color-primary-deep: #D9613D;
+  --color-background: #1F1E1C;
+  --color-surface: #2A2926;
+  --color-surface-2: #252422;
+  --color-text: #ECEAE5;
+  --color-muted: #7A7872;
+  --color-teal: #6BB3A8;
+  --color-brass: #D6B66C;
+  --color-danger: #E66060;
+
+  --shadow-out:
+    6px 6px 14px rgba(0, 0, 0, 0.55),
+    -5px -5px 12px rgba(255, 255, 255, 0.04);
+  --shadow-out-sm:
+    3px 3px 7px rgba(0, 0, 0, 0.5),
+    -3px -3px 7px rgba(255, 255, 255, 0.04);
+  --shadow-in:
+    inset 4px 4px 8px rgba(0, 0, 0, 0.55),
+    inset -4px -4px 8px rgba(255, 255, 255, 0.04);
+  --shadow-in-deep:
+    inset 6px 6px 12px rgba(0, 0, 0, 0.65),
+    inset -5px -5px 10px rgba(255, 255, 255, 0.04);
+  --shadow-fab:
+    6px 8px 18px rgba(0, 0, 0, 0.6),
+    -3px -3px 8px rgba(255, 255, 255, 0.05),
+    inset 1px 1px 1px rgba(255, 255, 255, 0.1);
+}
+html[data-theme="dark"] body { background: #15140F; }
+html[data-theme="dark"] .sheet { background: rgba(42, 41, 38, 0.92); }
+html[data-theme="dark"] .frost { background: rgba(0, 0, 0, 0.55); }
+
 /* App shell — centers mobile frame on desktop */
-body {
+html, body {
   margin: 0;
+  height: 100%;
+}
+body {
   background: #ddd9d0;
   font-family: 'Manrope', sans-serif;
   display: flex;
@@ -45,6 +82,7 @@ body {
   align-items: flex-start;
   min-height: 100vh;
   padding: 20px 0;
+  overflow-x: hidden;
 }
 
 #root {
@@ -390,24 +428,29 @@ body {
   flex: 0 0 auto;
 }
 
-/* Mobile fullscreen */
+/* Mobile fullscreen — lock to viewport, no body-level scroll */
 @media (max-width: 430px) {
+  html, body {
+    height: 100dvh;
+    overflow: hidden;
+    overscroll-behavior: none;
+  }
   body {
     padding: 0;
     display: block;
     background: var(--color-background);
+    min-height: 0;
   }
   #root {
     width: 100vw;
-    min-height: 100vh;
-    min-height: 100dvh;
+    height: 100dvh;
+    min-height: 0;
   }
   .tactile {
     width: 100vw;
-    min-height: 100vh;
-    min-height: 100dvh;
+    height: 100dvh;
+    min-height: 0;
     border-radius: 0;
     padding-top: env(safe-area-inset-top, 0px);
-    padding-bottom: env(safe-area-inset-bottom, 0px);
   }
 }

@@ -42,6 +42,8 @@ export function TaskProvider({ children }) {
     const stored = localStorage.getItem('tactile-sound');
     return stored === null ? true : stored === 'true';
   });
+  const [theme, setThemeState] = useState(() => localStorage.getItem('tactile-theme') || 'light');
+  const [defaultView, setDefaultViewState] = useState(() => localStorage.getItem('tactile-default-view') || 'matrix');
 
   const setHapticEnabled = (val) => {
     setHapticEnabledState(val);
@@ -52,6 +54,29 @@ export function TaskProvider({ children }) {
     setSoundEnabledState(val);
     localStorage.setItem('tactile-sound', String(val));
   };
+
+  const setTheme = (val) => {
+    setThemeState(val);
+    localStorage.setItem('tactile-theme', val);
+  };
+
+  const setDefaultView = (val) => {
+    setDefaultViewState(val);
+    localStorage.setItem('tactile-default-view', val);
+  };
+
+  useEffect(() => {
+    const apply = () => {
+      const isDark = theme === 'dark' || (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      document.documentElement.dataset.theme = isDark ? 'dark' : 'light';
+    };
+    apply();
+    if (theme === 'auto') {
+      const mq = window.matchMedia('(prefers-color-scheme: dark)');
+      mq.addEventListener?.('change', apply);
+      return () => mq.removeEventListener?.('change', apply);
+    }
+  }, [theme]);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -176,6 +201,7 @@ export function TaskProvider({ children }) {
       tasks, addTask, updateTask, deleteTask, toggleDone,
       auth, login, logout, completeOnboarding, loading,
       hapticEnabled, soundEnabled, setHapticEnabled, setSoundEnabled,
+      theme, setTheme, defaultView, setDefaultView,
       PRIORITY_COLORS, PRIORITY_LABELS, EFFORT_LABELS,
       PRIORITY_BADGE_KIND, EFFORT_BADGE_KIND,
     }}>

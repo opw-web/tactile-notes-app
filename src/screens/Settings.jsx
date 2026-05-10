@@ -1,28 +1,73 @@
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import TopBar from '../components/TopBar';
 import BottomNav from '../components/BottomNav';
 import PillSwitch from '../components/PillSwitch';
 import Toggle from '../components/Toggle';
 import { useTasks } from '../context/TaskContext';
+import { useFeedback } from '../hooks/useFeedback';
+
+const THEMES = ['light', 'dark', 'auto'];
+const VIEWS = ['matrix', 'timeline'];
+
+function escapeCsv(val) {
+  if (val == null) return "";
+  const s = String(val);
+  if (s.includes('"') || s.includes(',') || s.includes('\n')) {
+    return '"' + s.replace(/"/g, '""') + '"';
+  }
+  return s;
+}
 
 export default function Settings() {
-  const { auth, logout, hapticEnabled, soundEnabled, setHapticEnabled, setSoundEnabled } = useTasks();
+  const {
+    auth, logout, tasks, deleteTask,
+    hapticEnabled, soundEnabled, setHapticEnabled, setSoundEnabled,
+    theme, setTheme, defaultView, setDefaultView,
+  } = useTasks();
+  const { snap, heavy } = useFeedback();
   const navigate = useNavigate();
-  const [themeIdx, setThemeIdx] = useState(0);
 
   const user = auth.user || { name: "User", email: "", initials: "U" };
+  const themeIdx = Math.max(0, THEMES.indexOf(theme));
+  const viewIdx = Math.max(0, VIEWS.indexOf(defaultView));
 
   const handleLogout = async () => {
     await logout();
     navigate('/login');
   };
 
+  const handleExportCsv = () => {
+    snap();
+    const headers = ['title', 'description', 'priority', 'effort', 'date', 'time', 'all_day', 'done', 'created_at'];
+    const rows = tasks.map(t => [
+      t.title, t.description, t.priority, t.effort, t.date, t.time || '', t.allDay, t.done, t.createdAt
+    ]);
+    const csv = [headers, ...rows].map(r => r.map(escapeCsv).join(',')).join('\n');
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `tactile-tasks-${new Date().toISOString().slice(0,10)}.csv`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
+  const handleClearCompleted = async () => {
+    const completed = tasks.filter(t => t.done);
+    if (completed.length === 0) return;
+    if (!window.confirm(`Delete ${completed.length} completed task${completed.length === 1 ? '' : 's'}?`)) return;
+    heavy();
+    for (const t of completed) {
+      await deleteTask(t.id);
+    }
+  };
+
   return (
     <div className="tactile">
       <TopBar title="Settings" sub="CONTROL PANEL" />
       <div style={{ padding: "0 24px", overflowY: "auto", height: "calc(100dvh - 160px)" }}>
-        {/* profile block */}
         <div className="card-out" style={{
           padding: 18, display: "flex", gap: 14, alignItems: "center",
         }}>
@@ -52,7 +97,6 @@ export default function Settings() {
           </div>
         </div>
 
-        {/* preferences */}
         <div className="t-eyebrow" style={{ marginTop: 18, marginBottom: 8 }}>PREFERENCES</div>
         <div className="card-out" style={{
           padding: "14px 18px", marginBottom: 8,
@@ -69,35 +113,52 @@ export default function Settings() {
           <Toggle on={soundEnabled} onToggle={() => setSoundEnabled(!soundEnabled)} />
         </div>
 
-        {/* appearance */}
         <div className="t-eyebrow" style={{ marginTop: 14, marginBottom: 8 }}>APPEARANCE</div>
-        <div className="card-out" style={{
-          padding: "14px 18px", marginBottom: 8,
-          display: "flex", justifyContent: "space-between", alignItems: "center",
-        }}>
-          <span className="t-body" style={{ fontWeight: 600, fontSize: 14 }}>Default view</span>
-          <span className="t-small" style={{ fontFamily: "var(--font-display)", letterSpacing: 1, textTransform: "uppercase" }}>Matrix ›</span>
+        <div className="card-out" style={{ padding: "12px 14px", marginBottom: 8 }}>
+          <div className="t-small" style={{ marginBottom: 8, fontWeight: 600 }}>Default view</div>
+          <PillSwitch
+            items={[{ label: "Matrix" }, { label: "Timeline" }]}
+            active={viewIdx}
+            onChange={(i) => setDefaultView(VIEWS[i])}
+          />
         </div>
-        <PillSwitch
-          items={[
-            { label: "Light" }, { label: "Dark" }, { label: "Auto" },
-          ]}
-          active={themeIdx}
-          onChange={setThemeIdx}
-        />
+        <div className="card-out" style={{ padding: "12px 14px", marginBottom: 8 }}>
+          <div className="t-small" style={{ marginBottom: 8, fontWeight: 600 }}>Theme</div>
+          <PillSwitch
+            items={[{ label: "Light" }, { label: "Dark" }, { label: "Auto" }]}
+            active={themeIdx}
+            onChange={(i) => setTheme(THEMES[i])}
+          />
+        </div>
 
-        {/* data */}
         <div className="t-eyebrow" style={{ marginTop: 14, marginBottom: 8 }}>DATA</div>
-        <div className="card-out" style={{ padding: "14px 18px", marginBottom: 8, display: "flex", justifyContent: "space-between", cursor: "pointer" }}>
+        <button
+          onClick={handleExportCsv}
+          className="card-out"
+          style={{
+            padding: "14px 18px", marginBottom: 8,
+            display: "flex", justifyContent: "space-between", alignItems: "center",
+            width: "100%", border: "none", cursor: "pointer",
+            background: "var(--color-surface)",
+          }}
+        >
           <span className="t-body" style={{ fontWeight: 600, fontSize: 14 }}>Export CSV</span>
-          <span className="t-small">›</span>
-        </div>
-        <div className="card-out" style={{ padding: "14px 18px", marginBottom: 8, display: "flex", justifyContent: "space-between", cursor: "pointer" }}>
+          <span className="t-small">{tasks.length} task{tasks.length === 1 ? '' : 's'} ›</span>
+        </button>
+        <button
+          onClick={handleClearCompleted}
+          className="card-out"
+          style={{
+            padding: "14px 18px", marginBottom: 8,
+            display: "flex", justifyContent: "space-between", alignItems: "center",
+            width: "100%", border: "none", cursor: "pointer",
+            background: "var(--color-surface)",
+          }}
+        >
           <span className="t-body" style={{ fontWeight: 600, fontSize: 14, color: "var(--color-danger)" }}>Clear completed</span>
-          <span className="t-small">›</span>
-        </div>
+          <span className="t-small">{tasks.filter(t => t.done).length} done ›</span>
+        </button>
 
-        {/* sign out */}
         <button
           onClick={handleLogout}
           className="card-out"
