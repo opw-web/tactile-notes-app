@@ -7,10 +7,11 @@ import Sheet from '../components/Sheet';
 import { IconCheck, IconSearch, IconBell } from '../components/Icons';
 import { useTasks } from '../context/TaskContext';
 import { useFeedback } from '../hooks/useFeedback';
+import { todayLocalISO, localISO } from '../lib/dates';
 import NewTask from './NewTask';
 import TaskDetail from './TaskDetail';
 
-const todayStr = new Date().toISOString().slice(0, 10);
+const todayStr = todayLocalISO();
 
 function TimeCard({ task, onToggle, onClick }) {
   const { PRIORITY_LABELS, PRIORITY_BADGE_KIND, EFFORT_LABELS, EFFORT_BADGE_KIND } = useTasks();
@@ -58,7 +59,7 @@ function buildSections(tasks) {
   today.setHours(0, 0, 0, 0);
   const tomorrow = new Date(today);
   tomorrow.setDate(today.getDate() + 1);
-  const tomorrowStr = tomorrow.toISOString().slice(0, 10);
+  const tomorrowStr = localISO(tomorrow);
 
   const dateMap = {};
   tasks.forEach(t => {

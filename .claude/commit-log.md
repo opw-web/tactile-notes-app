@@ -68,3 +68,12 @@ App icon for Add to Home Screen:
 - TaskDetail: removed broken half/full toggle; now a single near-fullscreen Sheet that always shows everything (Save/Delete were below the fold)
 - Sheet component: content area is a flex child with overflowY: auto, so when content does exceed viewport (small phones) the sheet itself doesn't grow off-screen, only its inner content scrolls
 - Drag-to-dismiss threshold now uses the rendered offsetHeight instead of the height prop, so it works correctly with calc() values
+
+## 2026-05-10 [5f40890]
+**Subject:** fix: slim sheet handle, no dead space, TaskDetail matches NewTask layout
+**Files:** .claude/commit-log.md,src/components/Sheet.jsx,src/screens/TaskDetail.jsx,
+**Body:** - Sheet handle: extracted touch padding from .sheet-handle so the visible bar stays its slim 44x5px line. Padding now lives on a wrapper div, swipe-down still works on the larger touch target.
+- Sheet height: switched from `height` to `max-height` so it sizes to its content. With less content, the sheet hugs the bottom — no more dead space below the Deploy/Save buttons. Drag-to-dismiss already used offsetHeight so it still works.
+- TaskDetail: removed redundant inner `padding: 0 24px 24px` (the .sheet class already pads). Pill switches no longer cramp ("Heavy Lift" was wrapping). Date wheel now 108×140 / time wheels 42×70 to match NewTask exactly. Header is "OPERATION" eyebrow + close X like NewTask.
+
+Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>

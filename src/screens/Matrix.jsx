@@ -8,6 +8,7 @@ import Sheet from '../components/Sheet';
 import { IconSearch, IconBell } from '../components/Icons';
 import { useTasks } from '../context/TaskContext';
 import { useFeedback } from '../hooks/useFeedback';
+import { todayLocalISO } from '../lib/dates';
 import NewTask from './NewTask';
 import TaskDetail from './TaskDetail';
 
@@ -27,7 +28,7 @@ export default function Matrix() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQ, setSearchQ] = useState('');
 
-  const todayStr = new Date().toISOString().slice(0, 10);
+  const todayStr = todayLocalISO();
   const overdue = tasks.filter(t => t.date && t.date < todayStr && !t.done);
   const dueToday = tasks.filter(t => t.date === todayStr && !t.done);
 

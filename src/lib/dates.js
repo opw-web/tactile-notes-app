@@ -1,3 +1,17 @@
+// Format a Date as YYYY-MM-DD using LOCAL components.
+// Avoids the toISOString() bug where local midnight in UTC+ timezones
+// converts back to the previous calendar day in UTC.
+export function localISO(d) {
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${y}-${m}-${day}`;
+}
+
+export function todayLocalISO() {
+  return localISO(new Date());
+}
+
 export function generateDateRange(daysBeforeAfter = 15) {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
@@ -7,8 +21,7 @@ export function generateDateRange(daysBeforeAfter = 15) {
   for (let i = -daysBeforeAfter; i <= daysBeforeAfter; i++) {
     const d = new Date(today);
     d.setDate(today.getDate() + i);
-    const iso = d.toISOString().slice(0, 10);
-    values.push(iso);
+    values.push(localISO(d));
     if (i === 0) {
       labels.push('TODAY');
     } else {
