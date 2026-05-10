@@ -40,7 +40,7 @@ export function TaskProvider({ children }) {
   });
   const [soundEnabled, setSoundEnabledState] = useState(() => {
     const stored = localStorage.getItem('tactile-sound');
-    return stored === null ? false : stored === 'true';
+    return stored === null ? true : stored === 'true';
   });
 
   const setHapticEnabled = (val) => {

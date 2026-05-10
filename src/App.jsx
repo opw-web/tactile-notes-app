@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { TaskProvider, useTasks } from './context/TaskContext';
 import Login from './screens/Login';
@@ -5,6 +6,37 @@ import Onboarding from './screens/Onboarding';
 import Matrix from './screens/Matrix';
 import Timeline from './screens/Timeline';
 import Settings from './screens/Settings';
+
+function AddToHomeScreenBanner() {
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    const ua = navigator.userAgent || '';
+    const isIOS = /iPhone|iPad|iPod/.test(ua);
+    const isStandalone = window.navigator.standalone === true ||
+      window.matchMedia?.('(display-mode: standalone)').matches;
+    const dismissed = localStorage.getItem('tactile-a2hs-dismissed') === 'true';
+    if (isIOS && !isStandalone && !dismissed) {
+      setShow(true);
+    }
+  }, []);
+
+  if (!show) return null;
+
+  const dismiss = () => {
+    localStorage.setItem('tactile-a2hs-dismissed', 'true');
+    setShow(false);
+  };
+
+  return (
+    <div className="a2hs-banner">
+      <div className="text">
+        Tap <strong>Share</strong> ↑ then <strong>Add to Home Screen</strong> for full-screen mode.
+      </div>
+      <button className="close" onClick={dismiss} aria-label="Dismiss">✕</button>
+    </div>
+  );
+}
 
 function AuthGate({ children }) {
   const { auth, loading } = useTasks();
@@ -70,6 +102,7 @@ function App() {
           <Route path="/settings" element={<AuthGate><Settings /></AuthGate>} />
           <Route path="*" element={<Navigate to="/matrix" replace />} />
         </Routes>
+        <AddToHomeScreenBanner />
       </TaskProvider>
     </BrowserRouter>
   );

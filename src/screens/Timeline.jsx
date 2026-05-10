@@ -112,7 +112,7 @@ export default function Timeline() {
           <button className="icon-btn" style={{ border: "none", cursor: "pointer" }}><IconBell /></button>
         </>}
       />
-      <div style={{ padding: "0 24px", position: "relative", overflowY: "auto", height: 650, paddingBottom: 100 }}>
+      <div style={{ padding: "0 24px", position: "relative", overflowY: "auto", height: "calc(100dvh - 180px)", paddingBottom: 100 }}>
         {/* spine */}
         <div style={{
           position: "absolute", left: 13, top: 12, bottom: 100, width: 2,

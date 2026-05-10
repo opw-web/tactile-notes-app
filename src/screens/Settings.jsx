@@ -21,7 +21,7 @@ export default function Settings() {
   return (
     <div className="tactile">
       <TopBar title="Settings" sub="CONTROL PANEL" />
-      <div style={{ padding: "0 24px", overflowY: "auto", height: 680 }}>
+      <div style={{ padding: "0 24px", overflowY: "auto", height: "calc(100dvh - 160px)" }}>
         {/* profile block */}
         <div className="card-out" style={{
           padding: 18, display: "flex", gap: 14, alignItems: "center",

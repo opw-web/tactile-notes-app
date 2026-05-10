@@ -1,7 +1,55 @@
 {
   "directed": false,
   "multigraph": false,
-  "graph": {},
+  "graph": {
+    "hyperedges": [
+      {
+        "id": "auth_flow_pipeline",
+        "label": "Authentication Pipeline (Login -> OAuth -> Onboarding -> Matrix)",
+        "nodes": [
+          "claude_md_auth_flow",
+          "claude_md_login",
+          "claude_md_google_oauth",
+          "claude_md_supabase",
+          "claude_md_onboarding",
+          "claude_md_matrix"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "CLAUDE.md"
+      },
+      {
+        "id": "task_crud_data_flow",
+        "label": "Task CRUD Data Flow (TaskContext -> Supabase -> tasks table)",
+        "nodes": [
+          "claude_md_task_context",
+          "claude_md_supabase_js",
+          "claude_md_supabase",
+          "claude_md_tasks_table",
+          "claude_md_optimistic_updates"
+        ],
+        "relation": "implement",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "CLAUDE.md"
+      },
+      {
+        "id": "main_navigation_tabs",
+        "label": "Three-Tab Navigation (Matrix / Timeline / Settings)",
+        "nodes": [
+          "claude_md_bottom_nav",
+          "claude_md_matrix",
+          "claude_md_timeline",
+          "claude_md_settings"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "CLAUDE.md"
+      }
+    ]
+  },
   "nodes": [
     {
       "label": "vite.config.js",
@@ -9,7 +57,7 @@
       "source_file": "vite.config.js",
       "source_location": "L1",
       "id": "vite_config_js",
-      "community": 23
+      "community": 31
     },
     {
       "label": "eslint.config.js",
@@ -17,7 +65,7 @@
       "source_file": "eslint.config.js",
       "source_location": "L1",
       "id": "eslint_config_js",
-      "community": 24
+      "community": 32
     },
     {
       "label": "main.jsx",
@@ -25,7 +73,7 @@
       "source_file": "src/main.jsx",
       "source_location": "L1",
       "id": "src_main_jsx",
-      "community": 25
+      "community": 33
     },
     {
       "label": "App.jsx",
@@ -33,7 +81,7 @@
       "source_file": "src/App.jsx",
       "source_location": "L1",
       "id": "src_app_jsx",
-      "community": 3
+      "community": 6
     },
     {
       "label": "AuthGate()",
@@ -41,7 +89,7 @@
       "source_file": "src/App.jsx",
       "source_location": "L9",
       "id": "app_authgate",
-      "community": 3
+      "community": 6
     },
     {
       "label": "LoginGate()",
@@ -49,7 +97,7 @@
       "source_file": "src/App.jsx",
       "source_location": "L17",
       "id": "app_logingate",
-      "community": 3
+      "community": 6
     },
     {
       "label": "OnboardingGate()",
@@ -57,7 +105,7 @@
       "source_file": "src/App.jsx",
       "source_location": "L25",
       "id": "app_onboardinggate",
-      "community": 3
+      "community": 6
     },
     {
       "label": "LoadingScreen()",
@@ -65,7 +113,7 @@
       "source_file": "src/App.jsx",
       "source_location": "L33",
       "id": "app_loadingscreen",
-      "community": 3
+      "community": 6
     },
     {
       "label": "App()",
@@ -73,7 +121,7 @@
       "source_file": "src/App.jsx",
       "source_location": "L61",
       "id": "app_app",
-      "community": 3
+      "community": 6
     },
     {
       "label": "TaskContext.jsx",
@@ -81,7 +129,7 @@
       "source_file": "src/context/TaskContext.jsx",
       "source_location": "L1",
       "id": "src_context_taskcontext_jsx",
-      "community": 4
+      "community": 7
     },
     {
       "label": "rowToTask()",
@@ -89,7 +137,7 @@
       "source_file": "src/context/TaskContext.jsx",
       "source_location": "L17",
       "id": "taskcontext_rowtotask",
-      "community": 4
+      "community": 7
     },
     {
       "label": "TaskProvider()",
@@ -97,15 +145,15 @@
       "source_file": "src/context/TaskContext.jsx",
       "source_location": "L32",
       "id": "taskcontext_taskprovider",
-      "community": 4
+      "community": 7
     },
     {
       "label": "useTasks()",
       "file_type": "code",
       "source_file": "src/context/TaskContext.jsx",
-      "source_location": "L168",
+      "source_location": "L187",
       "id": "taskcontext_usetasks",
-      "community": 4
+      "community": 7
     },
     {
       "label": "Onboarding.jsx",
@@ -113,23 +161,23 @@
       "source_file": "src/screens/Onboarding.jsx",
       "source_location": "L1",
       "id": "src_screens_onboarding_jsx",
-      "community": 5
+      "community": 9
     },
     {
       "label": "MatrixThumb()",
       "file_type": "code",
       "source_file": "src/screens/Onboarding.jsx",
-      "source_location": "L6",
+      "source_location": "L5",
       "id": "onboarding_matrixthumb",
-      "community": 5
+      "community": 9
     },
     {
       "label": "Onboarding()",
       "file_type": "code",
       "source_file": "src/screens/Onboarding.jsx",
-      "source_location": "L74",
+      "source_location": "L73",
       "id": "onboarding_onboarding",
-      "community": 5
+      "community": 9
     },
     {
       "label": "Timeline.jsx",
@@ -137,23 +185,31 @@
       "source_file": "src/screens/Timeline.jsx",
       "source_location": "L1",
       "id": "src_screens_timeline_jsx",
-      "community": 6
+      "community": 8
     },
     {
       "label": "TimeCard()",
       "file_type": "code",
       "source_file": "src/screens/Timeline.jsx",
-      "source_location": "L12",
+      "source_location": "L14",
       "id": "timeline_timecard",
-      "community": 6
+      "community": 8
+    },
+    {
+      "label": "buildSections()",
+      "file_type": "code",
+      "source_file": "src/screens/Timeline.jsx",
+      "source_location": "L55",
+      "id": "timeline_buildsections",
+      "community": 8
     },
     {
       "label": "Timeline()",
       "file_type": "code",
       "source_file": "src/screens/Timeline.jsx",
-      "source_location": "L60",
+      "source_location": "L97",
       "id": "timeline_timeline",
-      "community": 6
+      "community": 8
     },
     {
       "label": "NewTask.jsx",
@@ -161,15 +217,15 @@
       "source_file": "src/screens/NewTask.jsx",
       "source_location": "L1",
       "id": "src_screens_newtask_jsx",
-      "community": 8
+      "community": 14
     },
     {
       "label": "NewTask()",
       "file_type": "code",
       "source_file": "src/screens/NewTask.jsx",
-      "source_location": "L10",
+      "source_location": "L16",
       "id": "newtask_newtask",
-      "community": 8
+      "community": 14
     },
     {
       "label": "Login.jsx",
@@ -177,15 +233,15 @@
       "source_file": "src/screens/Login.jsx",
       "source_location": "L1",
       "id": "src_screens_login_jsx",
-      "community": 9
+      "community": 15
     },
     {
       "label": "Login()",
       "file_type": "code",
       "source_file": "src/screens/Login.jsx",
-      "source_location": "L5",
+      "source_location": "L4",
       "id": "login_login",
-      "community": 9
+      "community": 15
     },
     {
       "label": "Settings.jsx",
@@ -193,15 +249,15 @@
       "source_file": "src/screens/Settings.jsx",
       "source_location": "L1",
       "id": "src_screens_settings_jsx",
-      "community": 10
+      "community": 16
     },
     {
       "label": "Settings()",
       "file_type": "code",
       "source_file": "src/screens/Settings.jsx",
-      "source_location": "L10",
+      "source_location": "L9",
       "id": "settings_settings",
-      "community": 10
+      "community": 16
     },
     {
       "label": "TaskDetail.jsx",
@@ -209,15 +265,23 @@
       "source_file": "src/screens/TaskDetail.jsx",
       "source_location": "L1",
       "id": "src_screens_taskdetail_jsx",
-      "community": 11
+      "community": 10
+    },
+    {
+      "label": "parseTime()",
+      "file_type": "code",
+      "source_file": "src/screens/TaskDetail.jsx",
+      "source_location": "L15",
+      "id": "taskdetail_parsetime",
+      "community": 10
     },
     {
       "label": "TaskDetail()",
       "file_type": "code",
       "source_file": "src/screens/TaskDetail.jsx",
-      "source_location": "L14",
+      "source_location": "L29",
       "id": "taskdetail_taskdetail",
-      "community": 11
+      "community": 10
     },
     {
       "label": "Matrix.jsx",
@@ -225,7 +289,7 @@
       "source_file": "src/screens/Matrix.jsx",
       "source_location": "L1",
       "id": "src_screens_matrix_jsx",
-      "community": 12
+      "community": 17
     },
     {
       "label": "Matrix()",
@@ -233,7 +297,7 @@
       "source_file": "src/screens/Matrix.jsx",
       "source_location": "L18",
       "id": "matrix_matrix",
-      "community": 12
+      "community": 17
     },
     {
       "label": "Icons.jsx",
@@ -241,7 +305,7 @@
       "source_file": "src/components/Icons.jsx",
       "source_location": "L1",
       "id": "src_components_icons_jsx",
-      "community": 0
+      "community": 2
     },
     {
       "label": "IconPlus()",
@@ -249,7 +313,7 @@
       "source_file": "src/components/Icons.jsx",
       "source_location": "L1",
       "id": "icons_iconplus",
-      "community": 0
+      "community": 2
     },
     {
       "label": "IconChevL()",
@@ -257,7 +321,7 @@
       "source_file": "src/components/Icons.jsx",
       "source_location": "L7",
       "id": "icons_iconchevl",
-      "community": 0
+      "community": 2
     },
     {
       "label": "IconChevR()",
@@ -265,7 +329,7 @@
       "source_file": "src/components/Icons.jsx",
       "source_location": "L13",
       "id": "icons_iconchevr",
-      "community": 0
+      "community": 2
     },
     {
       "label": "IconCheck()",
@@ -273,7 +337,7 @@
       "source_file": "src/components/Icons.jsx",
       "source_location": "L19",
       "id": "icons_iconcheck",
-      "community": 0
+      "community": 2
     },
     {
       "label": "IconGrid()",
@@ -281,7 +345,7 @@
       "source_file": "src/components/Icons.jsx",
       "source_location": "L25",
       "id": "icons_icongrid",
-      "community": 0
+      "community": 2
     },
     {
       "label": "IconClock()",
@@ -289,7 +353,7 @@
       "source_file": "src/components/Icons.jsx",
       "source_location": "L34",
       "id": "icons_iconclock",
-      "community": 0
+      "community": 2
     },
     {
       "label": "IconGear()",
@@ -297,7 +361,7 @@
       "source_file": "src/components/Icons.jsx",
       "source_location": "L41",
       "id": "icons_icongear",
-      "community": 0
+      "community": 2
     },
     {
       "label": "IconBell()",
@@ -305,7 +369,7 @@
       "source_file": "src/components/Icons.jsx",
       "source_location": "L48",
       "id": "icons_iconbell",
-      "community": 0
+      "community": 2
     },
     {
       "label": "IconSearch()",
@@ -313,7 +377,7 @@
       "source_file": "src/components/Icons.jsx",
       "source_location": "L55",
       "id": "icons_iconsearch",
-      "community": 0
+      "community": 2
     },
     {
       "label": "GoogleG()",
@@ -321,7 +385,7 @@
       "source_file": "src/components/Icons.jsx",
       "source_location": "L62",
       "id": "icons_googleg",
-      "community": 0
+      "community": 2
     },
     {
       "label": "TaskPill.jsx",
@@ -329,7 +393,7 @@
       "source_file": "src/components/TaskPill.jsx",
       "source_location": "L1",
       "id": "src_components_taskpill_jsx",
-      "community": 13
+      "community": 18
     },
     {
       "label": "TaskPill()",
@@ -337,7 +401,7 @@
       "source_file": "src/components/TaskPill.jsx",
       "source_location": "L1",
       "id": "taskpill_taskpill",
-      "community": 13
+      "community": 18
     },
     {
       "label": "PillSwitch.jsx",
@@ -345,31 +409,15 @@
       "source_file": "src/components/PillSwitch.jsx",
       "source_location": "L1",
       "id": "src_components_pillswitch_jsx",
-      "community": 14
+      "community": 19
     },
     {
       "label": "PillSwitch()",
       "file_type": "code",
       "source_file": "src/components/PillSwitch.jsx",
-      "source_location": "L1",
+      "source_location": "L4",
       "id": "pillswitch_pillswitch",
-      "community": 14
-    },
-    {
-      "label": "StatusBar.jsx",
-      "file_type": "code",
-      "source_file": "src/components/StatusBar.jsx",
-      "source_location": "L1",
-      "id": "src_components_statusbar_jsx",
-      "community": 15
-    },
-    {
-      "label": "StatusBar()",
-      "file_type": "code",
-      "source_file": "src/components/StatusBar.jsx",
-      "source_location": "L1",
-      "id": "statusbar_statusbar",
-      "community": 15
+      "community": 19
     },
     {
       "label": "FAB.jsx",
@@ -377,15 +425,15 @@
       "source_file": "src/components/FAB.jsx",
       "source_location": "L1",
       "id": "src_components_fab_jsx",
-      "community": 16
+      "community": 20
     },
     {
       "label": "FAB()",
       "file_type": "code",
       "source_file": "src/components/FAB.jsx",
-      "source_location": "L3",
+      "source_location": "L4",
       "id": "fab_fab",
-      "community": 16
+      "community": 20
     },
     {
       "label": "Toggle.jsx",
@@ -393,15 +441,15 @@
       "source_file": "src/components/Toggle.jsx",
       "source_location": "L1",
       "id": "src_components_toggle_jsx",
-      "community": 17
+      "community": 21
     },
     {
       "label": "Toggle()",
       "file_type": "code",
       "source_file": "src/components/Toggle.jsx",
-      "source_location": "L1",
+      "source_location": "L3",
       "id": "toggle_toggle",
-      "community": 17
+      "community": 21
     },
     {
       "label": "Badge.jsx",
@@ -409,7 +457,7 @@
       "source_file": "src/components/Badge.jsx",
       "source_location": "L1",
       "id": "src_components_badge_jsx",
-      "community": 18
+      "community": 22
     },
     {
       "label": "Badge()",
@@ -417,7 +465,7 @@
       "source_file": "src/components/Badge.jsx",
       "source_location": "L8",
       "id": "badge_badge",
-      "community": 18
+      "community": 22
     },
     {
       "label": "TopBar.jsx",
@@ -425,7 +473,7 @@
       "source_file": "src/components/TopBar.jsx",
       "source_location": "L1",
       "id": "src_components_topbar_jsx",
-      "community": 19
+      "community": 23
     },
     {
       "label": "TopBar()",
@@ -433,7 +481,7 @@
       "source_file": "src/components/TopBar.jsx",
       "source_location": "L1",
       "id": "topbar_topbar",
-      "community": 19
+      "community": 23
     },
     {
       "label": "Wheel.jsx",
@@ -441,15 +489,15 @@
       "source_file": "src/components/Wheel.jsx",
       "source_location": "L1",
       "id": "src_components_wheel_jsx",
-      "community": 20
+      "community": 24
     },
     {
       "label": "Wheel()",
       "file_type": "code",
       "source_file": "src/components/Wheel.jsx",
-      "source_location": "L3",
+      "source_location": "L4",
       "id": "wheel_wheel",
-      "community": 20
+      "community": 24
     },
     {
       "label": "BottomNav.jsx",
@@ -457,7 +505,7 @@
       "source_file": "src/components/BottomNav.jsx",
       "source_location": "L1",
       "id": "src_components_bottomnav_jsx",
-      "community": 21
+      "community": 25
     },
     {
       "label": "BottomNav()",
@@ -465,7 +513,111 @@
       "source_file": "src/components/BottomNav.jsx",
       "source_location": "L10",
       "id": "bottomnav_bottomnav",
-      "community": 21
+      "community": 25
+    },
+    {
+      "label": "Sheet.jsx",
+      "file_type": "code",
+      "source_file": "src/components/Sheet.jsx",
+      "source_location": "L1",
+      "id": "src_components_sheet_jsx",
+      "community": 26
+    },
+    {
+      "label": "Sheet()",
+      "file_type": "code",
+      "source_file": "src/components/Sheet.jsx",
+      "source_location": "L4",
+      "id": "sheet_sheet",
+      "community": 26
+    },
+    {
+      "label": "useFeedback.js",
+      "file_type": "code",
+      "source_file": "src/hooks/useFeedback.js",
+      "source_location": "L1",
+      "id": "src_hooks_usefeedback_js",
+      "community": 27
+    },
+    {
+      "label": "useFeedback()",
+      "file_type": "code",
+      "source_file": "src/hooks/useFeedback.js",
+      "source_location": "L5",
+      "id": "usefeedback_usefeedback",
+      "community": 27
+    },
+    {
+      "label": "feedback.js",
+      "file_type": "code",
+      "source_file": "src/lib/feedback.js",
+      "source_location": "L1",
+      "id": "src_lib_feedback_js",
+      "community": 5
+    },
+    {
+      "label": "getAudioContext()",
+      "file_type": "code",
+      "source_file": "src/lib/feedback.js",
+      "source_location": "L3",
+      "id": "feedback_getaudiocontext",
+      "community": 5
+    },
+    {
+      "label": "playTone()",
+      "file_type": "code",
+      "source_file": "src/lib/feedback.js",
+      "source_location": "L10",
+      "id": "feedback_playtone",
+      "community": 5
+    },
+    {
+      "label": "hapticTick()",
+      "file_type": "code",
+      "source_file": "src/lib/feedback.js",
+      "source_location": "L26",
+      "id": "feedback_haptictick",
+      "community": 5
+    },
+    {
+      "label": "hapticMedium()",
+      "file_type": "code",
+      "source_file": "src/lib/feedback.js",
+      "source_location": "L30",
+      "id": "feedback_hapticmedium",
+      "community": 5
+    },
+    {
+      "label": "hapticHeavy()",
+      "file_type": "code",
+      "source_file": "src/lib/feedback.js",
+      "source_location": "L34",
+      "id": "feedback_hapticheavy",
+      "community": 5
+    },
+    {
+      "label": "soundTick()",
+      "file_type": "code",
+      "source_file": "src/lib/feedback.js",
+      "source_location": "L38",
+      "id": "feedback_soundtick",
+      "community": 5
+    },
+    {
+      "label": "soundSnap()",
+      "file_type": "code",
+      "source_file": "src/lib/feedback.js",
+      "source_location": "L42",
+      "id": "feedback_soundsnap",
+      "community": 5
+    },
+    {
+      "label": "feedback()",
+      "file_type": "code",
+      "source_file": "src/lib/feedback.js",
+      "source_location": "L46",
+      "id": "feedback_feedback",
+      "community": 5
     },
     {
       "label": "supabase.js",
@@ -473,7 +625,31 @@
       "source_file": "src/lib/supabase.js",
       "source_location": "L1",
       "id": "src_lib_supabase_js",
-      "community": 26
+      "community": 34
+    },
+    {
+      "label": "dates.js",
+      "file_type": "code",
+      "source_file": "src/lib/dates.js",
+      "source_location": "L1",
+      "id": "src_lib_dates_js",
+      "community": 11
+    },
+    {
+      "label": "generateDateRange()",
+      "file_type": "code",
+      "source_file": "src/lib/dates.js",
+      "source_location": "L1",
+      "id": "dates_generatedaterange",
+      "community": 11
+    },
+    {
+      "label": "getCurrentTimeIndices()",
+      "file_type": "code",
+      "source_file": "src/lib/dates.js",
+      "source_location": "L22",
+      "id": "dates_getcurrenttimeindices",
+      "community": 11
     },
     {
       "label": "React + Vite Template Documentation",
@@ -569,7 +745,7 @@
       "author": null,
       "contributor": null,
       "id": "readme_react_compiler",
-      "community": 22
+      "community": 28
     },
     {
       "label": "ESLint Configuration",
@@ -581,7 +757,7 @@
       "author": null,
       "contributor": null,
       "id": "readme_eslint",
-      "community": 7
+      "community": 12
     },
     {
       "label": "typescript-eslint",
@@ -593,7 +769,31 @@
       "author": null,
       "contributor": null,
       "id": "readme_typescript_eslint",
-      "community": 7
+      "community": 12
+    },
+    {
+      "label": "Rationale: React Compiler Disabled (Performance Impact)",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "line 11",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "readme_rationale_no_react_compiler",
+      "community": 28
+    },
+    {
+      "label": "Rationale: TypeScript Recommended for Production",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "line 16",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "readme_rationale_typescript_recommended",
+      "community": 12
     },
     {
       "label": "SVG Icon Sprite Sheet",
@@ -605,7 +805,7 @@
       "author": null,
       "contributor": null,
       "id": "icons_sprite",
-      "community": 2
+      "community": 1
     },
     {
       "label": "Bluesky Social Icon",
@@ -617,7 +817,7 @@
       "author": null,
       "contributor": null,
       "id": "icons_bluesky",
-      "community": 2
+      "community": 1
     },
     {
       "label": "Discord Social Icon",
@@ -629,7 +829,7 @@
       "author": null,
       "contributor": null,
       "id": "icons_discord",
-      "community": 2
+      "community": 1
     },
     {
       "label": "Documentation Icon",
@@ -641,7 +841,7 @@
       "author": null,
       "contributor": null,
       "id": "icons_documentation",
-      "community": 2
+      "community": 1
     },
     {
       "label": "GitHub Social Icon",
@@ -653,7 +853,7 @@
       "author": null,
       "contributor": null,
       "id": "icons_github",
-      "community": 2
+      "community": 1
     },
     {
       "label": "Social/Star Icon",
@@ -665,7 +865,7 @@
       "author": null,
       "contributor": null,
       "id": "icons_social",
-      "community": 2
+      "community": 1
     },
     {
       "label": "X (Twitter) Social Icon",
@@ -677,7 +877,7 @@
       "author": null,
       "contributor": null,
       "id": "icons_x",
-      "community": 2
+      "community": 1
     },
     {
       "label": "Favicon - Purple Lightning Bolt",
@@ -692,28 +892,604 @@
       "community": 1
     },
     {
-      "label": "Rationale: React Compiler Disabled (Performance Impact)",
+      "label": "Tactile Studio",
       "file_type": "document",
-      "source_file": "README.md",
-      "source_location": "line 11",
+      "source_file": "CLAUDE.md",
+      "source_location": "line 22-28",
       "source_url": null,
-      "captured_at": null,
+      "captured_at": "2026-05-09",
       "author": null,
       "contributor": null,
-      "id": "readme_rationale_no_react_compiler",
-      "community": 22
+      "id": "claude_md_tactile_studio",
+      "community": 3
     },
     {
-      "label": "Rationale: TypeScript Recommended for Production",
+      "label": "Core Loop: Create -> Assign -> View -> Done",
       "file_type": "document",
-      "source_file": "README.md",
-      "source_location": "line 16",
+      "source_file": "CLAUDE.md",
+      "source_location": "line 26",
       "source_url": null,
-      "captured_at": null,
+      "captured_at": "2026-05-09",
       "author": null,
       "contributor": null,
-      "id": "readme_rationale_typescript_recommended",
-      "community": 7
+      "id": "claude_md_core_loop",
+      "community": 3
+    },
+    {
+      "label": "React 19.2",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "line 36",
+      "source_url": null,
+      "captured_at": "2026-05-09",
+      "author": null,
+      "contributor": null,
+      "id": "claude_md_react",
+      "community": 30
+    },
+    {
+      "label": "Vite 8.0",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "line 37",
+      "source_url": null,
+      "captured_at": "2026-05-09",
+      "author": null,
+      "contributor": null,
+      "id": "claude_md_vite",
+      "community": 13
+    },
+    {
+      "label": "react-router-dom 7.15",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "line 38",
+      "source_url": null,
+      "captured_at": "2026-05-09",
+      "author": null,
+      "contributor": null,
+      "id": "claude_md_react_router",
+      "community": 0
+    },
+    {
+      "label": "Supabase Backend/Auth",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "line 39",
+      "source_url": null,
+      "captured_at": "2026-05-09",
+      "author": null,
+      "contributor": null,
+      "id": "claude_md_supabase",
+      "community": 0
+    },
+    {
+      "label": "Google OAuth Provider",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "line 40",
+      "source_url": null,
+      "captured_at": "2026-05-09",
+      "author": null,
+      "contributor": null,
+      "id": "claude_md_google_oauth",
+      "community": 0
+    },
+    {
+      "label": "tactile.css Design System",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "line 41, 147-152",
+      "source_url": null,
+      "captured_at": "2026-05-09",
+      "author": null,
+      "contributor": null,
+      "id": "claude_md_tactile_css",
+      "community": 3
+    },
+    {
+      "label": "Vercel Deployment",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "line 43",
+      "source_url": null,
+      "captured_at": "2026-05-09",
+      "author": null,
+      "contributor": null,
+      "id": "claude_md_vercel",
+      "community": 13
+    },
+    {
+      "label": "main.jsx Entry Point",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "line 75",
+      "source_url": null,
+      "captured_at": "2026-05-09",
+      "author": null,
+      "contributor": null,
+      "id": "claude_md_main_jsx",
+      "community": 3
+    },
+    {
+      "label": "App.jsx Router & Auth Gates",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "line 76, 109-115",
+      "source_url": null,
+      "captured_at": "2026-05-09",
+      "author": null,
+      "contributor": null,
+      "id": "claude_md_app_jsx",
+      "community": 0
+    },
+    {
+      "label": "TaskContext.jsx Central State",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "line 78, 118-123",
+      "source_url": null,
+      "captured_at": "2026-05-09",
+      "author": null,
+      "contributor": null,
+      "id": "claude_md_task_context",
+      "community": 0
+    },
+    {
+      "label": "supabase.js Client",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "line 80",
+      "source_url": null,
+      "captured_at": "2026-05-09",
+      "author": null,
+      "contributor": null,
+      "id": "claude_md_supabase_js",
+      "community": 0
+    },
+    {
+      "label": "Login.jsx Screen",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "line 82",
+      "source_url": null,
+      "captured_at": "2026-05-09",
+      "author": null,
+      "contributor": null,
+      "id": "claude_md_login",
+      "community": 0
+    },
+    {
+      "label": "Onboarding.jsx Screen",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "line 83",
+      "source_url": null,
+      "captured_at": "2026-05-09",
+      "author": null,
+      "contributor": null,
+      "id": "claude_md_onboarding",
+      "community": 0
+    },
+    {
+      "label": "Matrix.jsx Screen",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "line 84, 142",
+      "source_url": null,
+      "captured_at": "2026-05-09",
+      "author": null,
+      "contributor": null,
+      "id": "claude_md_matrix",
+      "community": 3
+    },
+    {
+      "label": "Timeline.jsx Screen",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "line 85, 143",
+      "source_url": null,
+      "captured_at": "2026-05-09",
+      "author": null,
+      "contributor": null,
+      "id": "claude_md_timeline",
+      "community": 4
+    },
+    {
+      "label": "NewTask.jsx Screen",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "line 86",
+      "source_url": null,
+      "captured_at": "2026-05-09",
+      "author": null,
+      "contributor": null,
+      "id": "claude_md_new_task",
+      "community": 4
+    },
+    {
+      "label": "TaskDetail.jsx Screen",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "line 87",
+      "source_url": null,
+      "captured_at": "2026-05-09",
+      "author": null,
+      "contributor": null,
+      "id": "claude_md_task_detail",
+      "community": 35
+    },
+    {
+      "label": "Settings.jsx Screen",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "line 88, 144",
+      "source_url": null,
+      "captured_at": "2026-05-09",
+      "author": null,
+      "contributor": null,
+      "id": "claude_md_settings",
+      "community": 4
+    },
+    {
+      "label": "Badge.jsx Component",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "line 90",
+      "source_url": null,
+      "captured_at": "2026-05-09",
+      "author": null,
+      "contributor": null,
+      "id": "claude_md_badge",
+      "community": 4
+    },
+    {
+      "label": "BottomNav.jsx Component",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "line 91",
+      "source_url": null,
+      "captured_at": "2026-05-09",
+      "author": null,
+      "contributor": null,
+      "id": "claude_md_bottom_nav",
+      "community": 4
+    },
+    {
+      "label": "FAB.jsx Component",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "line 92",
+      "source_url": null,
+      "captured_at": "2026-05-09",
+      "author": null,
+      "contributor": null,
+      "id": "claude_md_fab",
+      "community": 4
+    },
+    {
+      "label": "Icons.jsx Component",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "line 93",
+      "source_url": null,
+      "captured_at": "2026-05-09",
+      "author": null,
+      "contributor": null,
+      "id": "claude_md_icons",
+      "community": 36
+    },
+    {
+      "label": "PillSwitch.jsx Component",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "line 94",
+      "source_url": null,
+      "captured_at": "2026-05-09",
+      "author": null,
+      "contributor": null,
+      "id": "claude_md_pill_switch",
+      "community": 4
+    },
+    {
+      "label": "StatusBar.jsx Component",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "line 95",
+      "source_url": null,
+      "captured_at": "2026-05-09",
+      "author": null,
+      "contributor": null,
+      "id": "claude_md_status_bar",
+      "community": 37
+    },
+    {
+      "label": "TaskPill.jsx Component",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "line 96",
+      "source_url": null,
+      "captured_at": "2026-05-09",
+      "author": null,
+      "contributor": null,
+      "id": "claude_md_task_pill",
+      "community": 3
+    },
+    {
+      "label": "Toggle.jsx Component",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "line 97",
+      "source_url": null,
+      "captured_at": "2026-05-09",
+      "author": null,
+      "contributor": null,
+      "id": "claude_md_toggle",
+      "community": 4
+    },
+    {
+      "label": "TopBar.jsx Component",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "line 98",
+      "source_url": null,
+      "captured_at": "2026-05-09",
+      "author": null,
+      "contributor": null,
+      "id": "claude_md_top_bar",
+      "community": 38
+    },
+    {
+      "label": "Wheel.jsx Component",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "line 99",
+      "source_url": null,
+      "captured_at": "2026-05-09",
+      "author": null,
+      "contributor": null,
+      "id": "claude_md_wheel",
+      "community": 4
+    },
+    {
+      "label": "tasks Table (PostgreSQL)",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "line 125-139",
+      "source_url": null,
+      "captured_at": "2026-05-09",
+      "author": null,
+      "contributor": null,
+      "id": "claude_md_tasks_table",
+      "community": 0
+    },
+    {
+      "label": "Row-Level Security Policies",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "line 138",
+      "source_url": null,
+      "captured_at": "2026-05-09",
+      "author": null,
+      "contributor": null,
+      "id": "claude_md_rls_policies",
+      "community": 0
+    },
+    {
+      "label": "Neumorphic Design System",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "line 147-152",
+      "source_url": null,
+      "captured_at": "2026-05-09",
+      "author": null,
+      "contributor": null,
+      "id": "claude_md_neumorphic_design",
+      "community": 3
+    },
+    {
+      "label": "Auth Flow (Login -> OAuth -> Onboarding -> Matrix)",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "line 109-115",
+      "source_url": null,
+      "captured_at": "2026-05-09",
+      "author": null,
+      "contributor": null,
+      "id": "claude_md_auth_flow",
+      "community": 0
+    },
+    {
+      "label": "Optimistic Updates Pattern",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "line 121",
+      "source_url": null,
+      "captured_at": "2026-05-09",
+      "author": null,
+      "contributor": null,
+      "id": "claude_md_optimistic_updates",
+      "community": 0
+    },
+    {
+      "label": "HTML Drag-and-Drop (no library)",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "line 142, 203",
+      "source_url": null,
+      "captured_at": "2026-05-09",
+      "author": null,
+      "contributor": null,
+      "id": "claude_md_drag_drop",
+      "community": 3
+    },
+    {
+      "label": "3x3 Priority x Effort Matrix",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "line 24, 142",
+      "source_url": null,
+      "captured_at": "2026-05-09",
+      "author": null,
+      "contributor": null,
+      "id": "claude_md_priority_effort_matrix",
+      "community": 3
+    },
+    {
+      "label": "Known Limitations / Technical Debt",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "line 166-174",
+      "source_url": null,
+      "captured_at": "2026-05-09",
+      "author": null,
+      "contributor": null,
+      "id": "claude_md_tech_debt",
+      "community": 4
+    },
+    {
+      "label": "Graphify Knowledge Graph",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "line 9-18",
+      "source_url": null,
+      "captured_at": "2026-05-09",
+      "author": null,
+      "contributor": null,
+      "id": "claude_md_graphify_knowledge_graph",
+      "community": 29
+    },
+    {
+      "label": "Rationale: No TypeScript (Plain JSX)",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "line 182",
+      "source_url": null,
+      "captured_at": "2026-05-09",
+      "author": null,
+      "contributor": null,
+      "id": "claude_md_rationale_no_typescript",
+      "community": 30
+    },
+    {
+      "label": "Rationale: No State Library (Context + useState)",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "line 183, 202",
+      "source_url": null,
+      "captured_at": "2026-05-09",
+      "author": null,
+      "contributor": null,
+      "id": "claude_md_rationale_no_state_lib",
+      "community": 0
+    },
+    {
+      "label": "Rationale: Custom Neumorphic CSS (No Component Library)",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "line 200",
+      "source_url": null,
+      "captured_at": "2026-05-09",
+      "author": null,
+      "contributor": null,
+      "id": "claude_md_rationale_custom_css",
+      "community": 3
+    },
+    {
+      "label": "Rationale: HTML Drag-and-Drop (Not a Library)",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "line 203",
+      "source_url": null,
+      "captured_at": "2026-05-09",
+      "author": null,
+      "contributor": null,
+      "id": "claude_md_rationale_html_dnd",
+      "community": 3
+    },
+    {
+      "label": "Rationale: No React Query (Single TaskContext)",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "line 202",
+      "source_url": null,
+      "captured_at": "2026-05-09",
+      "author": null,
+      "contributor": null,
+      "id": "claude_md_rationale_no_react_query",
+      "community": 0
+    },
+    {
+      "label": "Graph Report Summary (79 nodes, 54 edges, 27 communities)",
+      "file_type": "document",
+      "source_file": "graphify-out/GRAPH_REPORT.md",
+      "source_location": "line 1-9",
+      "source_url": null,
+      "captured_at": "2026-05-09",
+      "author": null,
+      "contributor": null,
+      "id": "graph_report_summary",
+      "community": 29
+    },
+    {
+      "label": "God Nodes (SVG Icon Sprite Sheet, Vite Build Tool)",
+      "file_type": "document",
+      "source_file": "graphify-out/GRAPH_REPORT.md",
+      "source_location": "line 40-51",
+      "source_url": null,
+      "captured_at": "2026-05-09",
+      "author": null,
+      "contributor": null,
+      "id": "graph_report_god_nodes",
+      "community": 39
+    },
+    {
+      "label": "Knowledge Gaps (13 isolated nodes, thin communities)",
+      "file_type": "document",
+      "source_file": "graphify-out/GRAPH_REPORT.md",
+      "source_location": "line 170-210",
+      "source_url": null,
+      "captured_at": "2026-05-09",
+      "author": null,
+      "contributor": null,
+      "id": "graph_report_knowledge_gaps",
+      "community": 40
+    },
+    {
+      "label": "Community: Auth & Routing Gates",
+      "file_type": "document",
+      "source_file": "graphify-out/GRAPH_REPORT.md",
+      "source_location": "line 75-76",
+      "source_url": null,
+      "captured_at": "2026-05-09",
+      "author": null,
+      "contributor": null,
+      "id": "graph_report_community_auth_routing",
+      "community": 0
+    },
+    {
+      "label": "Community: Task State Management",
+      "file_type": "document",
+      "source_file": "graphify-out/GRAPH_REPORT.md",
+      "source_location": "line 78-79",
+      "source_url": null,
+      "captured_at": "2026-05-09",
+      "author": null,
+      "contributor": null,
+      "id": "graph_report_community_task_state",
+      "community": 0
+    },
+    {
+      "label": "Community: Build Tooling & Branding",
+      "file_type": "document",
+      "source_file": "graphify-out/GRAPH_REPORT.md",
+      "source_location": "line 67-68",
+      "source_url": null,
+      "captured_at": "2026-05-09",
+      "author": null,
+      "contributor": null,
+      "id": "graph_report_community_build_tooling",
+      "community": 13
     }
   ],
   "links": [
@@ -805,7 +1581,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/context/TaskContext.jsx",
-      "source_location": "L168",
+      "source_location": "L187",
       "weight": 1.0,
       "_src": "src_context_taskcontext_jsx",
       "_tgt": "taskcontext_usetasks",
@@ -817,7 +1593,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/screens/Onboarding.jsx",
-      "source_location": "L6",
+      "source_location": "L5",
       "weight": 1.0,
       "_src": "src_screens_onboarding_jsx",
       "_tgt": "onboarding_matrixthumb",
@@ -829,7 +1605,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/screens/Onboarding.jsx",
-      "source_location": "L74",
+      "source_location": "L73",
       "weight": 1.0,
       "_src": "src_screens_onboarding_jsx",
       "_tgt": "onboarding_onboarding",
@@ -841,7 +1617,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/screens/Timeline.jsx",
-      "source_location": "L12",
+      "source_location": "L14",
       "weight": 1.0,
       "_src": "src_screens_timeline_jsx",
       "_tgt": "timeline_timecard",
@@ -853,7 +1629,19 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/screens/Timeline.jsx",
-      "source_location": "L60",
+      "source_location": "L55",
+      "weight": 1.0,
+      "_src": "src_screens_timeline_jsx",
+      "_tgt": "timeline_buildsections",
+      "source": "src_screens_timeline_jsx",
+      "target": "timeline_buildsections",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/screens/Timeline.jsx",
+      "source_location": "L97",
       "weight": 1.0,
       "_src": "src_screens_timeline_jsx",
       "_tgt": "timeline_timeline",
@@ -862,10 +1650,22 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/screens/Timeline.jsx",
+      "source_location": "L103",
+      "weight": 1.0,
+      "_src": "timeline_timeline",
+      "_tgt": "timeline_buildsections",
+      "source": "timeline_buildsections",
+      "target": "timeline_timeline",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/screens/NewTask.jsx",
-      "source_location": "L10",
+      "source_location": "L16",
       "weight": 1.0,
       "_src": "src_screens_newtask_jsx",
       "_tgt": "newtask_newtask",
@@ -877,7 +1677,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/screens/Login.jsx",
-      "source_location": "L5",
+      "source_location": "L4",
       "weight": 1.0,
       "_src": "src_screens_login_jsx",
       "_tgt": "login_login",
@@ -889,7 +1689,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/screens/Settings.jsx",
-      "source_location": "L10",
+      "source_location": "L9",
       "weight": 1.0,
       "_src": "src_screens_settings_jsx",
       "_tgt": "settings_settings",
@@ -901,11 +1701,35 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/screens/TaskDetail.jsx",
-      "source_location": "L14",
+      "source_location": "L15",
+      "weight": 1.0,
+      "_src": "src_screens_taskdetail_jsx",
+      "_tgt": "taskdetail_parsetime",
+      "source": "src_screens_taskdetail_jsx",
+      "target": "taskdetail_parsetime",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/screens/TaskDetail.jsx",
+      "source_location": "L29",
       "weight": 1.0,
       "_src": "src_screens_taskdetail_jsx",
       "_tgt": "taskdetail_taskdetail",
       "source": "src_screens_taskdetail_jsx",
+      "target": "taskdetail_taskdetail",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/screens/TaskDetail.jsx",
+      "source_location": "L43",
+      "weight": 1.0,
+      "_src": "taskdetail_taskdetail",
+      "_tgt": "taskdetail_parsetime",
+      "source": "taskdetail_parsetime",
       "target": "taskdetail_taskdetail",
       "confidence_score": 1.0
     },
@@ -1057,7 +1881,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/PillSwitch.jsx",
-      "source_location": "L1",
+      "source_location": "L4",
       "weight": 1.0,
       "_src": "src_components_pillswitch_jsx",
       "_tgt": "pillswitch_pillswitch",
@@ -1068,20 +1892,8 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "src/components/StatusBar.jsx",
-      "source_location": "L1",
-      "weight": 1.0,
-      "_src": "src_components_statusbar_jsx",
-      "_tgt": "statusbar_statusbar",
-      "source": "src_components_statusbar_jsx",
-      "target": "statusbar_statusbar",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
       "source_file": "src/components/FAB.jsx",
-      "source_location": "L3",
+      "source_location": "L4",
       "weight": 1.0,
       "_src": "src_components_fab_jsx",
       "_tgt": "fab_fab",
@@ -1093,7 +1905,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/Toggle.jsx",
-      "source_location": "L1",
+      "source_location": "L3",
       "weight": 1.0,
       "_src": "src_components_toggle_jsx",
       "_tgt": "toggle_toggle",
@@ -1129,7 +1941,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/Wheel.jsx",
-      "source_location": "L3",
+      "source_location": "L4",
       "weight": 1.0,
       "_src": "src_components_wheel_jsx",
       "_tgt": "wheel_wheel",
@@ -1147,6 +1959,246 @@
       "_tgt": "bottomnav_bottomnav",
       "source": "src_components_bottomnav_jsx",
       "target": "bottomnav_bottomnav",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Sheet.jsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_src": "src_components_sheet_jsx",
+      "_tgt": "sheet_sheet",
+      "source": "src_components_sheet_jsx",
+      "target": "sheet_sheet",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/hooks/useFeedback.js",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_src": "src_hooks_usefeedback_js",
+      "_tgt": "usefeedback_usefeedback",
+      "source": "src_hooks_usefeedback_js",
+      "target": "usefeedback_usefeedback",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/feedback.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_src": "src_lib_feedback_js",
+      "_tgt": "feedback_getaudiocontext",
+      "source": "src_lib_feedback_js",
+      "target": "feedback_getaudiocontext",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/feedback.js",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_src": "src_lib_feedback_js",
+      "_tgt": "feedback_playtone",
+      "source": "src_lib_feedback_js",
+      "target": "feedback_playtone",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/feedback.js",
+      "source_location": "L26",
+      "weight": 1.0,
+      "_src": "src_lib_feedback_js",
+      "_tgt": "feedback_haptictick",
+      "source": "src_lib_feedback_js",
+      "target": "feedback_haptictick",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/feedback.js",
+      "source_location": "L30",
+      "weight": 1.0,
+      "_src": "src_lib_feedback_js",
+      "_tgt": "feedback_hapticmedium",
+      "source": "src_lib_feedback_js",
+      "target": "feedback_hapticmedium",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/feedback.js",
+      "source_location": "L34",
+      "weight": 1.0,
+      "_src": "src_lib_feedback_js",
+      "_tgt": "feedback_hapticheavy",
+      "source": "src_lib_feedback_js",
+      "target": "feedback_hapticheavy",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/feedback.js",
+      "source_location": "L38",
+      "weight": 1.0,
+      "_src": "src_lib_feedback_js",
+      "_tgt": "feedback_soundtick",
+      "source": "src_lib_feedback_js",
+      "target": "feedback_soundtick",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/feedback.js",
+      "source_location": "L42",
+      "weight": 1.0,
+      "_src": "src_lib_feedback_js",
+      "_tgt": "feedback_soundsnap",
+      "source": "src_lib_feedback_js",
+      "target": "feedback_soundsnap",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/feedback.js",
+      "source_location": "L46",
+      "weight": 1.0,
+      "_src": "src_lib_feedback_js",
+      "_tgt": "feedback_feedback",
+      "source": "src_lib_feedback_js",
+      "target": "feedback_feedback",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/feedback.js",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_src": "feedback_playtone",
+      "_tgt": "feedback_getaudiocontext",
+      "source": "feedback_getaudiocontext",
+      "target": "feedback_playtone",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/feedback.js",
+      "source_location": "L39",
+      "weight": 1.0,
+      "_src": "feedback_soundtick",
+      "_tgt": "feedback_playtone",
+      "source": "feedback_playtone",
+      "target": "feedback_soundtick",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/feedback.js",
+      "source_location": "L43",
+      "weight": 1.0,
+      "_src": "feedback_soundsnap",
+      "_tgt": "feedback_playtone",
+      "source": "feedback_playtone",
+      "target": "feedback_soundsnap",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/feedback.js",
+      "source_location": "L48",
+      "weight": 1.0,
+      "_src": "feedback_feedback",
+      "_tgt": "feedback_haptictick",
+      "source": "feedback_haptictick",
+      "target": "feedback_feedback",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/feedback.js",
+      "source_location": "L51",
+      "weight": 1.0,
+      "_src": "feedback_feedback",
+      "_tgt": "feedback_hapticmedium",
+      "source": "feedback_hapticmedium",
+      "target": "feedback_feedback",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/feedback.js",
+      "source_location": "L54",
+      "weight": 1.0,
+      "_src": "feedback_feedback",
+      "_tgt": "feedback_hapticheavy",
+      "source": "feedback_hapticheavy",
+      "target": "feedback_feedback",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/feedback.js",
+      "source_location": "L49",
+      "weight": 1.0,
+      "_src": "feedback_feedback",
+      "_tgt": "feedback_soundtick",
+      "source": "feedback_soundtick",
+      "target": "feedback_feedback",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/feedback.js",
+      "source_location": "L52",
+      "weight": 1.0,
+      "_src": "feedback_feedback",
+      "_tgt": "feedback_soundsnap",
+      "source": "feedback_soundsnap",
+      "target": "feedback_feedback",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/dates.js",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_src": "src_lib_dates_js",
+      "_tgt": "dates_generatedaterange",
+      "source": "src_lib_dates_js",
+      "target": "dates_generatedaterange",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/dates.js",
+      "source_location": "L22",
+      "weight": 1.0,
+      "_src": "src_lib_dates_js",
+      "_tgt": "dates_getcurrenttimeindices",
+      "source": "src_lib_dates_js",
+      "target": "dates_getcurrenttimeindices",
       "confidence_score": 1.0
     },
     {
@@ -1364,7 +2416,605 @@
       "_tgt": "icons_sprite",
       "source": "icons_sprite",
       "target": "favicon_lightning"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "line 26",
+      "weight": 1.0,
+      "_src": "claude_md_tactile_studio",
+      "_tgt": "claude_md_core_loop",
+      "source": "claude_md_tactile_studio",
+      "target": "claude_md_core_loop"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "line 24",
+      "weight": 1.0,
+      "_src": "claude_md_tactile_studio",
+      "_tgt": "claude_md_priority_effort_matrix",
+      "source": "claude_md_tactile_studio",
+      "target": "claude_md_priority_effort_matrix"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "line 24",
+      "weight": 1.0,
+      "_src": "claude_md_tactile_studio",
+      "_tgt": "claude_md_neumorphic_design",
+      "source": "claude_md_tactile_studio",
+      "target": "claude_md_neumorphic_design"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "line 182",
+      "weight": 1.0,
+      "_src": "claude_md_rationale_no_typescript",
+      "_tgt": "claude_md_react",
+      "source": "claude_md_react",
+      "target": "claude_md_rationale_no_typescript"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "graphify-out/GRAPH_REPORT.md",
+      "source_location": "line 67",
+      "weight": 0.8,
+      "_src": "graph_report_community_build_tooling",
+      "_tgt": "claude_md_vite",
+      "source": "claude_md_vite",
+      "target": "graph_report_community_build_tooling"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": "CLAUDE.md",
+      "source_location": "line 43, 37",
+      "weight": 0.7,
+      "_src": "claude_md_vercel",
+      "_tgt": "claude_md_vite",
+      "source": "claude_md_vite",
+      "target": "claude_md_vercel"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "line 76",
+      "weight": 1.0,
+      "_src": "claude_md_app_jsx",
+      "_tgt": "claude_md_react_router",
+      "source": "claude_md_react_router",
+      "target": "claude_md_app_jsx"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "line 115",
+      "weight": 1.0,
+      "_src": "claude_md_auth_flow",
+      "_tgt": "claude_md_supabase",
+      "source": "claude_md_supabase",
+      "target": "claude_md_auth_flow"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "line 40",
+      "weight": 1.0,
+      "_src": "claude_md_google_oauth",
+      "_tgt": "claude_md_supabase",
+      "source": "claude_md_supabase",
+      "target": "claude_md_google_oauth"
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "line 119",
+      "weight": 1.0,
+      "_src": "claude_md_task_context",
+      "_tgt": "claude_md_supabase",
+      "source": "claude_md_supabase",
+      "target": "claude_md_task_context"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "line 80",
+      "weight": 1.0,
+      "_src": "claude_md_supabase_js",
+      "_tgt": "claude_md_supabase",
+      "source": "claude_md_supabase",
+      "target": "claude_md_supabase_js"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "line 125",
+      "weight": 1.0,
+      "_src": "claude_md_tasks_table",
+      "_tgt": "claude_md_supabase",
+      "source": "claude_md_supabase",
+      "target": "claude_md_tasks_table"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "line 111",
+      "weight": 1.0,
+      "_src": "claude_md_auth_flow",
+      "_tgt": "claude_md_google_oauth",
+      "source": "claude_md_google_oauth",
+      "target": "claude_md_auth_flow"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "line 75",
+      "weight": 1.0,
+      "_src": "claude_md_main_jsx",
+      "_tgt": "claude_md_tactile_css",
+      "source": "claude_md_tactile_css",
+      "target": "claude_md_main_jsx"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "line 147",
+      "weight": 1.0,
+      "_src": "claude_md_tactile_css",
+      "_tgt": "claude_md_neumorphic_design",
+      "source": "claude_md_tactile_css",
+      "target": "claude_md_neumorphic_design"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "line 200",
+      "weight": 1.0,
+      "_src": "claude_md_rationale_custom_css",
+      "_tgt": "claude_md_tactile_css",
+      "source": "claude_md_tactile_css",
+      "target": "claude_md_rationale_custom_css"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "line 113",
+      "weight": 1.0,
+      "_src": "claude_md_app_jsx",
+      "_tgt": "claude_md_auth_flow",
+      "source": "claude_md_app_jsx",
+      "target": "claude_md_auth_flow"
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "line 119",
+      "weight": 1.0,
+      "_src": "claude_md_task_context",
+      "_tgt": "claude_md_tasks_table",
+      "source": "claude_md_task_context",
+      "target": "claude_md_tasks_table"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "line 121",
+      "weight": 1.0,
+      "_src": "claude_md_task_context",
+      "_tgt": "claude_md_optimistic_updates",
+      "source": "claude_md_task_context",
+      "target": "claude_md_optimistic_updates"
+    },
+    {
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "CLAUDE.md",
+      "source_location": "line 184",
+      "weight": 0.9,
+      "_src": "claude_md_task_context",
+      "_tgt": "claude_md_supabase_js",
+      "source": "claude_md_task_context",
+      "target": "claude_md_supabase_js"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "line 183, 202",
+      "weight": 1.0,
+      "_src": "claude_md_rationale_no_state_lib",
+      "_tgt": "claude_md_task_context",
+      "source": "claude_md_task_context",
+      "target": "claude_md_rationale_no_state_lib"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "line 202",
+      "weight": 1.0,
+      "_src": "claude_md_rationale_no_react_query",
+      "_tgt": "claude_md_task_context",
+      "source": "claude_md_task_context",
+      "target": "claude_md_rationale_no_react_query"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "graphify-out/GRAPH_REPORT.md",
+      "source_location": "line 78",
+      "weight": 0.9,
+      "_src": "graph_report_community_task_state",
+      "_tgt": "claude_md_task_context",
+      "source": "claude_md_task_context",
+      "target": "graph_report_community_task_state"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "line 111",
+      "weight": 1.0,
+      "_src": "claude_md_auth_flow",
+      "_tgt": "claude_md_login",
+      "source": "claude_md_login",
+      "target": "claude_md_auth_flow"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "line 111",
+      "weight": 1.0,
+      "_src": "claude_md_auth_flow",
+      "_tgt": "claude_md_onboarding",
+      "source": "claude_md_onboarding",
+      "target": "claude_md_auth_flow"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "line 111",
+      "weight": 1.0,
+      "_src": "claude_md_auth_flow",
+      "_tgt": "claude_md_matrix",
+      "source": "claude_md_matrix",
+      "target": "claude_md_auth_flow"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "line 142",
+      "weight": 1.0,
+      "_src": "claude_md_matrix",
+      "_tgt": "claude_md_priority_effort_matrix",
+      "source": "claude_md_matrix",
+      "target": "claude_md_priority_effort_matrix"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "line 142",
+      "weight": 1.0,
+      "_src": "claude_md_matrix",
+      "_tgt": "claude_md_drag_drop",
+      "source": "claude_md_matrix",
+      "target": "claude_md_drag_drop"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "line 142",
+      "weight": 1.0,
+      "_src": "claude_md_matrix",
+      "_tgt": "claude_md_task_pill",
+      "source": "claude_md_matrix",
+      "target": "claude_md_task_pill"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "line 91",
+      "weight": 0.9,
+      "_src": "claude_md_bottom_nav",
+      "_tgt": "claude_md_matrix",
+      "source": "claude_md_matrix",
+      "target": "claude_md_bottom_nav"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "line 143",
+      "weight": 1.0,
+      "_src": "claude_md_timeline",
+      "_tgt": "claude_md_badge",
+      "source": "claude_md_timeline",
+      "target": "claude_md_badge"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "line 91",
+      "weight": 0.9,
+      "_src": "claude_md_bottom_nav",
+      "_tgt": "claude_md_timeline",
+      "source": "claude_md_timeline",
+      "target": "claude_md_bottom_nav"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "line 168",
+      "weight": 0.8,
+      "_src": "claude_md_tech_debt",
+      "_tgt": "claude_md_timeline",
+      "source": "claude_md_timeline",
+      "target": "claude_md_tech_debt"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "line 86",
+      "weight": 1.0,
+      "_src": "claude_md_new_task",
+      "_tgt": "claude_md_wheel",
+      "source": "claude_md_new_task",
+      "target": "claude_md_wheel"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "line 86",
+      "weight": 1.0,
+      "_src": "claude_md_new_task",
+      "_tgt": "claude_md_toggle",
+      "source": "claude_md_new_task",
+      "target": "claude_md_toggle"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "line 168",
+      "weight": 0.8,
+      "_src": "claude_md_tech_debt",
+      "_tgt": "claude_md_new_task",
+      "source": "claude_md_new_task",
+      "target": "claude_md_tech_debt"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "CLAUDE.md",
+      "source_location": "line 92, 86",
+      "weight": 0.8,
+      "_src": "claude_md_fab",
+      "_tgt": "claude_md_new_task",
+      "source": "claude_md_new_task",
+      "target": "claude_md_fab"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "line 144",
+      "weight": 1.0,
+      "_src": "claude_md_settings",
+      "_tgt": "claude_md_toggle",
+      "source": "claude_md_settings",
+      "target": "claude_md_toggle"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "line 144",
+      "weight": 1.0,
+      "_src": "claude_md_settings",
+      "_tgt": "claude_md_pill_switch",
+      "source": "claude_md_settings",
+      "target": "claude_md_pill_switch"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "line 91",
+      "weight": 0.9,
+      "_src": "claude_md_bottom_nav",
+      "_tgt": "claude_md_settings",
+      "source": "claude_md_settings",
+      "target": "claude_md_bottom_nav"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "line 169-171",
+      "weight": 0.8,
+      "_src": "claude_md_tech_debt",
+      "_tgt": "claude_md_settings",
+      "source": "claude_md_settings",
+      "target": "claude_md_tech_debt"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "line 172",
+      "weight": 0.8,
+      "_src": "claude_md_tech_debt",
+      "_tgt": "claude_md_wheel",
+      "source": "claude_md_wheel",
+      "target": "claude_md_tech_debt"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "line 138",
+      "weight": 1.0,
+      "_src": "claude_md_tasks_table",
+      "_tgt": "claude_md_rls_policies",
+      "source": "claude_md_tasks_table",
+      "target": "claude_md_rls_policies"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "graphify-out/GRAPH_REPORT.md",
+      "source_location": "line 75",
+      "weight": 0.85,
+      "_src": "graph_report_community_auth_routing",
+      "_tgt": "claude_md_auth_flow",
+      "source": "claude_md_auth_flow",
+      "target": "graph_report_community_auth_routing"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "line 203",
+      "weight": 1.0,
+      "_src": "claude_md_rationale_html_dnd",
+      "_tgt": "claude_md_drag_drop",
+      "source": "claude_md_drag_drop",
+      "target": "claude_md_rationale_html_dnd"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "line 16",
+      "weight": 1.0,
+      "_src": "claude_md_graphify_knowledge_graph",
+      "_tgt": "graph_report_summary",
+      "source": "claude_md_graphify_knowledge_graph",
+      "target": "graph_report_summary"
     }
   ],
-  "hyperedges": []
+  "hyperedges": [
+    {
+      "id": "auth_flow_pipeline",
+      "label": "Authentication Pipeline (Login -> OAuth -> Onboarding -> Matrix)",
+      "nodes": [
+        "claude_md_auth_flow",
+        "claude_md_login",
+        "claude_md_google_oauth",
+        "claude_md_supabase",
+        "claude_md_onboarding",
+        "claude_md_matrix"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md"
+    },
+    {
+      "id": "task_crud_data_flow",
+      "label": "Task CRUD Data Flow (TaskContext -> Supabase -> tasks table)",
+      "nodes": [
+        "claude_md_task_context",
+        "claude_md_supabase_js",
+        "claude_md_supabase",
+        "claude_md_tasks_table",
+        "claude_md_optimistic_updates"
+      ],
+      "relation": "implement",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md"
+    },
+    {
+      "id": "main_navigation_tabs",
+      "label": "Three-Tab Navigation (Matrix / Timeline / Settings)",
+      "nodes": [
+        "claude_md_bottom_nav",
+        "claude_md_matrix",
+        "claude_md_timeline",
+        "claude_md_settings"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md"
+    }
+  ]
 }

@@ -5,6 +5,8 @@ export default function PillSwitch({ items, active, onChange }) {
   const containerRef = useRef(null);
   const [indicatorStyle, setIndicatorStyle] = useState({});
   const { tick } = useFeedback();
+  const isDragging = useRef(false);
+  const lastIndex = useRef(active);
 
   useLayoutEffect(() => {
     const container = containerRef.current;
@@ -20,6 +22,19 @@ export default function PillSwitch({ items, active, onChange }) {
     });
   }, [active, items.length]);
 
+  const indexFromX = (clientX) => {
+    const container = containerRef.current;
+    if (!container) return active;
+    const rect = container.getBoundingClientRect();
+    const segs = container.querySelectorAll('.seg');
+    for (let i = 0; i < segs.length; i++) {
+      const r = segs[i].getBoundingClientRect();
+      if (clientX >= r.left && clientX <= r.right) return i;
+    }
+    if (clientX < rect.left) return 0;
+    return items.length - 1;
+  };
+
   const handleClick = (i) => {
     if (i !== active) {
       tick();
@@ -27,8 +42,33 @@ export default function PillSwitch({ items, active, onChange }) {
     }
   };
 
+  const handleTouchStart = (e) => {
+    isDragging.current = true;
+    lastIndex.current = active;
+  };
+
+  const handleTouchMove = (e) => {
+    if (!isDragging.current) return;
+    const idx = indexFromX(e.touches[0].clientX);
+    if (idx !== lastIndex.current) {
+      lastIndex.current = idx;
+      tick();
+      onChange?.(idx);
+    }
+  };
+
+  const handleTouchEnd = () => {
+    isDragging.current = false;
+  };
+
   return (
-    <div className="pill-switch" ref={containerRef}>
+    <div
+      className="pill-switch"
+      ref={containerRef}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
       <div className="pill-indicator" style={indicatorStyle} />
       {items.map((it, i) => (
         <button

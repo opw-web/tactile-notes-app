@@ -124,7 +124,8 @@ body {
 /* bottom nav — rectangular */
 .t-bottomnav {
   position: absolute;
-  left: 20px; right: 20px; bottom: 16px;
+  left: 20px; right: 20px;
+  bottom: max(16px, env(safe-area-inset-bottom, 16px));
   height: 68px; border-radius: 18px;
   background: var(--color-surface);
   box-shadow: var(--shadow-out);
@@ -153,7 +154,8 @@ body {
 /* FAB — square */
 .t-fab {
   position: absolute;
-  right: 20px; bottom: 100px;
+  right: 20px;
+  bottom: calc(100px + env(safe-area-inset-bottom, 0px));
   width: 60px; height: 60px;
   border-radius: 16px;
   background: linear-gradient(160deg, #ED8261 0%, #D9613D 100%);
@@ -335,7 +337,6 @@ body {
   box-shadow: var(--shadow-out-sm);
   border-radius: 6px;
   pointer-events: none;
-  z-index: 1;
 }
 .wheel-list {
   position: absolute;
@@ -353,6 +354,40 @@ body {
 /* drag-over highlight for matrix wells */
 .well.drag-over {
   box-shadow: var(--shadow-in), 0 0 0 2px var(--color-primary);
+}
+
+/* Tactile press feedback (substitutes haptic on iOS) */
+.t-fab, .t-check, .pill-switch .seg, .t-switch, .icon-btn {
+  transition: transform 0.08s ease;
+}
+.t-fab:active { transform: scale(0.94); }
+.t-check:active { transform: scale(0.92); }
+.pill-switch .seg:active { transform: scale(0.96); }
+.t-switch:active { transform: scale(0.95); }
+.icon-btn:active { transform: scale(0.94); }
+
+/* iOS Add to Home Screen banner */
+.a2hs-banner {
+  position: fixed;
+  left: 12px; right: 12px;
+  bottom: max(12px, env(safe-area-inset-bottom, 12px));
+  background: var(--color-surface);
+  box-shadow: var(--shadow-out);
+  border-radius: 14px;
+  padding: 12px 14px;
+  display: flex; align-items: center; gap: 10px;
+  z-index: 1000;
+  font-family: var(--font-body);
+}
+.a2hs-banner .text {
+  flex: 1; font-size: 12px; line-height: 1.35; color: var(--color-text);
+}
+.a2hs-banner .close {
+  width: 26px; height: 26px; border-radius: 7px;
+  background: var(--color-background); box-shadow: var(--shadow-in);
+  border: none; cursor: pointer; color: var(--color-muted);
+  display: flex; align-items: center; justify-content: center;
+  flex: 0 0 auto;
 }
 
 /* Mobile fullscreen */
@@ -373,5 +408,6 @@ body {
     min-height: 100dvh;
     border-radius: 0;
     padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
   }
 }
