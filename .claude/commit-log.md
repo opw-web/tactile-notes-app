@@ -51,3 +51,12 @@ Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>
 - Tactile container adds safe-area-inset-bottom padding on mobile for scrollable screens
 - Replace hardcoded heights in Timeline (650→100dvh-180) and Settings (680→100dvh-160)
 - AudioContext now resumes when suspended (iOS Safari requires this for sound)
+
+## 2026-05-10 [8a8aad2]
+**Subject:** fix: scroll lock, audio unlock, app icon, real dark mode + features
+**Files:** .claude/commit-log.md,index.html,public/apple-touch-icon.png,public/favicon.svg,public/icon-192.png,public/icon-512.png,public/manifest.json,src/App.jsx,src/context/TaskContext.jsx,src/lib/feedback.js,src/screens/Login.jsx,src/screens/Matrix.jsx,src/screens/Settings.jsx,src/screens/Timeline.jsx,src/styles/tactile.css,
+**Body:** Scroll lock (the original ask):
+- body { min-height: 100vh } was the bug — 100vh exceeds 100dvh in Safari with the address bar showing, forcing scroll on the body. On mobile, html/body now lock to 100dvh with overflow: hidden, and .tactile is exactly 100dvh tall.
+- Internal scroll only happens where it should (Timeline list, Settings list, sheets).
+
+App icon for Add to Home Screen:

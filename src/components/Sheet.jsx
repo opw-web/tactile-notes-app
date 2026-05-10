@@ -71,10 +71,11 @@ export default function Sheet({ open, onClose, height = 700, children }) {
   const handleTouchEnd = () => {
     if (!isDragging.current) return;
     isDragging.current = false;
+    const rendered = sheetRef.current?.offsetHeight || 600;
     if (sheetRef.current) {
       sheetRef.current.style.transition = '';
     }
-    if (dragY.current > height * 0.3) {
+    if (dragY.current > rendered * 0.3) {
       tick();
       handleClose();
     } else {
@@ -95,7 +96,7 @@ export default function Sheet({ open, onClose, height = 700, children }) {
       <div
         ref={sheetRef}
         className={"sheet" + (visible ? " sheet-in" : "")}
-        style={{ height, zIndex: 11 }}
+        style={{ height, zIndex: 11, display: 'flex', flexDirection: 'column' }}
         onTransitionEnd={handleTransitionEnd}
       >
         <div
@@ -103,9 +104,11 @@ export default function Sheet({ open, onClose, height = 700, children }) {
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
-          style={{ cursor: 'grab', padding: '10px 0' }}
+          style={{ cursor: 'grab', padding: '10px 0', flex: '0 0 auto' }}
         />
-        {children}
+        <div style={{ flex: '1 1 auto', overflowY: 'auto', minHeight: 0 }}>
+          {children}
+        </div>
       </div>
     </>
   );

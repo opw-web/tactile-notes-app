@@ -60,7 +60,7 @@ export default function NewTask({ open, onClose }) {
   };
 
   return (
-    <Sheet open={open} onClose={handleClose} height={700}>
+    <Sheet open={open} onClose={handleClose} height="calc(100dvh - 40px)">
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
         <div className="t-eyebrow" style={{ fontSize: 10 }}>NEW OPERATION</div>
         <button
