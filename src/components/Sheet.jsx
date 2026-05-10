@@ -96,16 +96,21 @@ export default function Sheet({ open, onClose, height = 700, children }) {
       <div
         ref={sheetRef}
         className={"sheet" + (visible ? " sheet-in" : "")}
-        style={{ height, zIndex: 11, display: 'flex', flexDirection: 'column' }}
+        style={{ maxHeight: height, zIndex: 11, display: 'flex', flexDirection: 'column' }}
         onTransitionEnd={handleTransitionEnd}
       >
         <div
-          className="sheet-handle"
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
-          style={{ cursor: 'grab', padding: '10px 0', flex: '0 0 auto' }}
-        />
+          style={{
+            display: 'flex', justifyContent: 'center',
+            padding: '6px 0 10px', cursor: 'grab', flex: '0 0 auto',
+            touchAction: 'none',
+          }}
+        >
+          <div className="sheet-handle" style={{ margin: 0 }} />
+        </div>
         <div style={{ flex: '1 1 auto', overflowY: 'auto', minHeight: 0 }}>
           {children}
         </div>

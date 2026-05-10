@@ -56,10 +56,18 @@ export default function TaskDetail({ taskId, onClose }) {
 
   return (
     <Sheet open={!!task} onClose={onClose} height="calc(100dvh - 40px)">
-      <div style={{ padding: "0 24px 24px" }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
-          <span className="t-eyebrow" style={{ fontSize: 9 }}>OPERATION</span>
-          <span className="t-eyebrow" style={{ fontSize: 9, color: "var(--color-primary)" }}>EDITING</span>
+      <div>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <div className="t-eyebrow" style={{ fontSize: 10 }}>OPERATION</div>
+          <button
+            onClick={onClose}
+            style={{
+              width: 30, height: 30, borderRadius: 8, fontSize: 14, color: "var(--color-muted)",
+              background: "var(--color-background)", boxShadow: "var(--shadow-in)",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              border: "none", cursor: "pointer",
+            }}
+          >✕</button>
         </div>
 
         <input
@@ -68,16 +76,16 @@ export default function TaskDetail({ taskId, onClose }) {
           onChange={(e) => updateTask(taskId, { title: e.target.value })}
           style={{
             fontFamily: "var(--font-display)", fontWeight: 700,
-            fontSize: 28, color: "var(--color-text)", letterSpacing: -0.5,
+            fontSize: 26, color: "var(--color-text)", letterSpacing: -0.5,
             background: "transparent", border: "none", outline: "none",
-            width: "100%", marginTop: 4, lineHeight: 1.05,
+            width: "100%", marginTop: 14, lineHeight: 1.05,
           }}
         />
 
-        <div style={{ display: "flex", gap: 14, marginTop: 18 }}>
+        <div style={{ display: "flex", gap: 14, marginTop: 16 }}>
           <div>
             <div className="t-eyebrow" style={{ marginBottom: 6 }}>DATE</div>
-            <Wheel items={dateRange.labels} active={activeDateIdx} w={114} h={170} onChange={handleDateChange} />
+            <Wheel items={dateRange.labels} active={activeDateIdx} w={108} h={140} onChange={handleDateChange} />
           </div>
           <div style={{ flex: 1 }}>
             <div className="t-eyebrow" style={{ marginBottom: 6 }}>TIME</div>
@@ -86,9 +94,9 @@ export default function TaskDetail({ taskId, onClose }) {
               <Toggle on={task.allDay} onToggle={() => updateTask(taskId, { allDay: !task.allDay })} />
             </div>
             <div style={{ marginTop: 10, opacity: task.allDay ? 0.4 : 1, transition: "opacity 0.2s", display: "flex", gap: 6, justifyContent: "center" }}>
-              <Wheel items={HOURS} active={time.hourIdx} w={42} h={104} onChange={(i) => handleTimeChange(i, time.minuteIdx, time.ampmIdx)} />
-              <Wheel items={MINUTES} active={time.minuteIdx >= 0 ? time.minuteIdx : 0} w={42} h={104} onChange={(i) => handleTimeChange(time.hourIdx, i, time.ampmIdx)} />
-              <Wheel items={AMPM} active={time.ampmIdx} w={42} h={104} onChange={(i) => handleTimeChange(time.hourIdx, time.minuteIdx, i)} />
+              <Wheel items={HOURS} active={time.hourIdx} w={42} h={70} onChange={(i) => handleTimeChange(i, time.minuteIdx, time.ampmIdx)} />
+              <Wheel items={MINUTES} active={time.minuteIdx >= 0 ? time.minuteIdx : 0} w={42} h={70} onChange={(i) => handleTimeChange(time.hourIdx, i, time.ampmIdx)} />
+              <Wheel items={AMPM} active={time.ampmIdx} w={42} h={70} onChange={(i) => handleTimeChange(time.hourIdx, time.minuteIdx, i)} />
             </div>
           </div>
         </div>

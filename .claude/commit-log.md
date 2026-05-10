@@ -60,3 +60,11 @@ Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>
 - Internal scroll only happens where it should (Timeline list, Settings list, sheets).
 
 App icon for Add to Home Screen:
+
+## 2026-05-10 [5c9fd12]
+**Subject:** fix: sheets fill viewport — NewTask/TaskDetail no longer require inner scrolling
+**Files:** .claude/commit-log.md,src/components/Sheet.jsx,src/screens/NewTask.jsx,src/screens/TaskDetail.jsx,
+**Body:** - NewTask sheet: height 700px → calc(100dvh - 40px) so it fills the screen on tall phones
+- TaskDetail: removed broken half/full toggle; now a single near-fullscreen Sheet that always shows everything (Save/Delete were below the fold)
+- Sheet component: content area is a flex child with overflowY: auto, so when content does exceed viewport (small phones) the sheet itself doesn't grow off-screen, only its inner content scrolls
+- Drag-to-dismiss threshold now uses the rendered offsetHeight instead of the height prop, so it works correctly with calc() values
